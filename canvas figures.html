@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>figures</title>
+	<style>
+		canvas {
+			border: 1px solid #000000;
+		}
+	</style>
+	<script>
+		// global var
+		var can, ctxt;
+
+		function intit () {
+
+			// setting 2d context 
+			can = document.getElementById("myCanvas");
+			ctxt = can.getContext("2d");
+
+			// center of canvas
+			var c = can.width/2;
+			//triangle
+			drawTriangle(ctxt, 60, 150, 100, 100, 5, "red", "blue");
+			//circle
+			drawCircle(ctxt, 160, 150, 35, 0, 2*Math.PI, true, "yellow", "orange");
+			// semicircle
+			drawCircle(ctxt, 260, 150, 35, 3, 2*Math.PI, true, "black", "grey");
+			//rectangle
+			drawRectangle(ctxt, 20, 510, 50, 90, 5, "green", "red");
+		}
+		function drawTriangle(ctxt, xPos, yPos, width, height, line, color1, color2){
+
+			ctxt.beginPath();
+				ctxt.moveTo( xPos, yPos-height/2);
+				ctxt.lineTo( xPos + height/2 , yPos + height/2 );
+				ctxt.lineTo(xPos-width/2, yPos+height/2);
+			ctxt.closePath();	
+
+			ctxt.fillStyle = color1;
+			ctxt.fill();
+			ctxt.strokeStyle = color2;
+			ctxt.lineWidth = line;
+			ctxt.stroke();
+		};
+		// xPos, yPos - center of circle r - radius
+		// sAngle - The starting angle, in radians (0 is at the 3 o'clock position of the arc's circle)
+		// eAngle - The ending angle, in radians
+		// counterclockwise - Optional. Specifies whether the drawing should be counterclockwise or clockwise. False is default, and indicates clockwise, while true indicates counter-clockwise.
+
+
+		function drawCircle(ctxt, xPos, yPos,r,sAngle,eAngle,counterclockwise,line, color1, color2){
+			ctxt.beginPath();
+			ctxt.arc(xPos, yPos, r, sAngle, eAngle);
+			ctxt.fillStyle = color1;
+			ctxt.fill();
+			ctxt.strokeStyle = color2;
+			ctxt.lineWidth = line;
+			ctxt.stroke();
+		}
+		function drawRectangle(ctxt, xPos, yPos, width, height, line, color1, color2){
+			ctxt.beginPath();
+				ctxt.moveTo( xPos, yPos);
+				ctxt.lineTo( xPos + width , yPos );
+				ctxt.lineTo(xPos+width, yPos-height);
+				ctxt.lineTo(xPos, yPos-height);
+			ctxt.closePath();	
+
+			ctxt.fillStyle = color1;
+			ctxt.fill();
+			ctxt.strokeStyle = color2;
+			ctxt.lineWidth = line;
+			ctxt.stroke();
+		}
+
+	</script>
+</head>
+<body onload="intit()">
+<canvas id="myCanvas" width="800" height="1000">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>triangles</title>
+	<style>
+		canvas {
+			border: 1px solid #000000;
+		}
+	</style>
+	<script>
+		// global var
+		var can, ctxt;
+
+		function intit () {
+			// this access the canvas element in the DOM
+			console.log("Init function");
+			// setting 2d context 
+			can = document.getElementById("myCanvas");
+			ctxt = can.getContext("2d");
+			console.log(can, ctxt);
+			// center of canvas
+			var c = can.width/2;
+			// W
+			drawLine(ctxt, 10, 20, 20, 60, 4, "blue", "bevel", "round");
+			drawLine(ctxt, 20, 60, 30, 40, 4, "blue", "round", "miter");
+			drawLine(ctxt, 30, 40, 40, 60, 4, "blue", "round", "miter");
+			drawLine(ctxt, 40, 60, 50, 20, 4, "blue", "round", "miter");
+			// E
+			drawBezierCurve(ctxt, 60, 50, 60, 30, 80, 30, 80, 50, 4);
+			drawLine(ctxt, 60, 50, 80, 50, 4, "green", "round", "mitter");
+			drawBezierCurve(ctxt, 60, 50, 60, 60, 70, 70, 80, 60, 4);
+
+			// H
+			drawLine(ctxt, 100, 20, 100, 70, 4, "green", "round", "mitter");
+			drawLine(ctxt, 100, 40, 130, 40, 4, "green", "round", "mitter");
+			drawLine(ctxt, 130, 20, 130, 70, 4, "green", "round", "mitter");
+			// i
+			drawBezierCurve (ctxt, 140, 40, 135, 50, 140, 70, 145, 55, 4);
+			drawCircle(ctxt, 140, 30,5,0,2*Math.PI,true,2, "red", "red");
+
+		}
+		// lineCap - butt, round, square
+		// lineJoin - bevel, round, miter
+		function drawLine(ctxt, xPos, yPos, xLineTo, yLineTo, lineWidth, strokeColor, lineCap, lineJoin){
+			ctxt.beginPath();
+				ctxt.moveTo( xPos, yPos);
+				ctxt.lineTo( xLineTo, yLineTo);
+				ctxt.lineWidth = lineWidth;
+				ctxt.strokeStyle = strokeColor;
+				ctxt.stroke();
+				ctxt.lineCap = lineCap;
+				ctxt.lineJoin = lineJoin;
+		}
+		function drawBezierCurve (ctxt, xPos, yPos, xCtrlPt1, yCtrlPt1, xCtrlPt2, yCtrlPt2, xEndPt, yEndPt, lineWidth){
+			ctxt.beginPath();
+				ctxt.moveTo(xPos, yPos);
+				ctxt.bezierCurveTo(xCtrlPt1, yCtrlPt1, xCtrlPt2, yCtrlPt2, xEndPt, yEndPt);
+				ctxt.lineWidth = lineWidth;
+				ctxt.stroke();
+		}
+		// xPos, yPos - center of circle r - radius
+		// sAngle - The starting angle, in radians (0 is at the 3 o'clock position of the arc's circle)
+		// eAngle - The ending angle, in radians
+		// counterclockwise - Optional. Specifies whether the drawing should be counterclockwise or clockwise. False is default, and indicates clockwise, while true indicates counter-clockwise.
+		function drawCircle(ctxt, xPos, yPos,r,sAngle,eAngle,counterclockwise,line, color1, color2){
+			ctxt.beginPath();
+			ctxt.arc(xPos, yPos, r, sAngle, eAngle);
+			ctxt.fillStyle = color1;
+			ctxt.fill();
+			ctxt.strokeStyle = color2;
+			ctxt.lineWidth = line;
+			ctxt.stroke();
+		}
+	</script>
+</head>
+<body onload="intit()">
+<canvas id="myCanvas" width="800" height="1000">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+</body>
+</html>
