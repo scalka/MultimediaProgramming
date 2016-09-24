@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>triangles</title>
+	<title>Drawings</title>
 	<style>
 		canvas {
 			border: 1px solid #000000;
@@ -8,7 +8,7 @@
 	</style>
 	<script>
 		// global var
-		var can, ctxt;
+		var can, ctxt, gradient;
 
 		function intit () {
 			// this access the canvas element in the DOM
@@ -19,6 +19,27 @@
 			console.log(can, ctxt);
 			// center of canvas
 			var c = can.width/2;
+
+
+			// rainbow gradient
+			var gradient = ctxt.createLinearGradient(50, 0, 150, 300);
+				gradient.addColorStop(1/7, "red");
+				gradient.addColorStop(2/7, "orange");
+				gradient.addColorStop(3/7, "yellow");
+				gradient.addColorStop(4/7, "green");
+				gradient.addColorStop(5/7, "lightblue");
+				gradient.addColorStop(6/7, "darkblue");
+				gradient.addColorStop(7/7, "purple");
+
+			fillText(ctxt, "Solution 1", 40, 90, 250);
+			//triangle
+			drawTriangle(ctxt, 60, 150, 100, 100, 5, gradient, "blue");
+			//circle
+			drawCircle(ctxt, 160, 150, 35, 0, 2*Math.PI, true, gradient, "orange");
+			// semicircle
+			drawCircle(ctxt, 260, 150, 35, 3, 2*Math.PI, true, "black", "grey");
+			//rectangle
+			drawRectangle(ctxt, 20, 510, 50, 90, 5, "green", "red");
 			// W
 			drawLine(ctxt, 10, 20, 20, 60, 4, "blue", "bevel", "round");
 			drawLine(ctxt, 20, 60, 30, 40, 4, "blue", "round", "miter");
@@ -36,6 +57,10 @@
 			// i
 			drawBezierCurve (ctxt, 140, 40, 135, 50, 140, 70, 145, 55, 4);
 			drawCircle(ctxt, 140, 30,5,0,2*Math.PI,true,2, "red", "red");
+
+			drawCloud(ctxt, 570, 90, "lightblue", "darkblue");
+			drawCloud(ctxt, 370, 170, "darkblue", "lightblue");
+			
 
 		}
 		// lineCap - butt, round, square
@@ -57,6 +82,22 @@
 				ctxt.lineWidth = lineWidth;
 				ctxt.stroke();
 		}
+		function drawCloud(ctxt, x, y, fillColor, strokeColor){
+			ctxt.beginPath();
+			ctxt.moveTo(x, y);
+				ctxt.bezierCurveTo(x-40, y+20, x-40, y+70, x+60, y+70);
+				ctxt.bezierCurveTo(x+80, y+100, x+150, y+100, x+170, y+70);
+				ctxt.bezierCurveTo(x+260, y+70, x+260, y+40, x+230, y+20);
+				ctxt.bezierCurveTo(x+270, y-40, x+210, y-50, x+220, y-30);
+				ctxt.bezierCurveTo(x+150, y-75, x+70, y-60, x+80, y-30);
+				ctxt.bezierCurveTo(x+30, y-75, x-20, y-60, x, y);
+		    ctxt.closePath();
+		    ctxt.lineWidth = 5;
+		    ctxt.fillStyle = fillColor;
+		    ctxt.fill();
+		    ctxt.strokeStyle = strokeColor;
+		    ctxt.stroke();
+		}
 		// xPos, yPos - center of circle r - radius
 		// sAngle - The starting angle, in radians (0 is at the 3 o'clock position of the arc's circle)
 		// eAngle - The ending angle, in radians
@@ -70,8 +111,40 @@
 			ctxt.lineWidth = line;
 			ctxt.stroke();
 		}
+		function drawRectangle(ctxt, xPos, yPos, width, height, line, color1, color2){
+			ctxt.beginPath();
+				ctxt.moveTo( xPos, yPos);
+				ctxt.lineTo( xPos + width , yPos );
+				ctxt.lineTo(xPos+width, yPos-height);
+				ctxt.lineTo(xPos, yPos-height);
+			ctxt.closePath();	
+
+			ctxt.fillStyle = color1;
+			ctxt.fill();
+			ctxt.strokeStyle = color2;
+			ctxt.lineWidth = line;
+			ctxt.stroke();
+		}
+		function drawTriangle(ctxt, xPos, yPos, width, height, line, color1, color2){
+
+			ctxt.beginPath();
+				ctxt.moveTo( xPos, yPos-height/2);
+				ctxt.lineTo( xPos + height/2 , yPos + height/2 );
+				ctxt.lineTo(xPos-width/2, yPos+height/2);
+			ctxt.closePath();	
+
+			ctxt.fillStyle = color1;
+			ctxt.fill();
+			ctxt.strokeStyle = color2;
+			ctxt.lineWidth = line;
+			ctxt.stroke();
+		};	
+		function fillText(ctxt, text, xPos, yPos, maxWidth){
+			ctxt.font = 'italic 20pt Calibri';
+			ctxt.fillText(text, xPos, yPos);
+		}		
 	</script>
-</head>
+</head>R
 <body onload="intit()">
 <canvas id="myCanvas" width="800" height="1000">
 	Your browser can't render the canvas. Please upgrade.
