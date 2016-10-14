@@ -1,0 +1,89 @@
+<!-- TODO animation  -- >
+
+<!-- An array of JS objects is stored in var sCoOrds:
+var sCoOrds = [
+{"x": 0, "y": 0 ,"w": 150 , "h": 170 },
+{"x": 100, "y": 100 ,"w": 100 , "h": 150 },
+{"x": 200, "y": 200 ,"w": 100 , "h": 150 }
+]
+ This stores the x, y location of a cutout from the associated
+"needlework.png" graphic to be cropped. You will need to update the
+values in the object to reflect the actual values. Create the data for a
+total of five objects from the image.
+ The values can be retrieved as follows: sCoOrds[1].x, sCoOrds[2].y.
+Create a loop that retrieves the values from this object and draws the
+cropped portions to a random position on the canvas.
+ Bonus you could add a background gradient to appreciate the better
+appreciate the transparancy of the images   -->
+<!doctype html>
+<html>
+<head>
+	<title>Drawings</title>
+	<style>
+		canvas {
+			border: 1px solid #000000;
+		}
+	</style>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="../polyfill/raf.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// global var
+			var can, ctxt, gradient;
+			// setting 2d context 
+			can = document.getElementById("myCanvas");
+			ctx = can.getContext("2d");
+			var canvasWidth = can.width;
+			var canvasHeight = can.height;
+			var time = 0;
+			console.log(can, ctx);
+			// new image
+			var needlework = new Image();
+				needlework.src = "needleWork.png";
+			//gradient
+			var gradient = ctx.createLinearGradient(0, 0, 170, 0);
+				gradient.addColorStop(0, "AntiqueWhite");	
+				gradient.addColorStop(1, "Aquamarine");
+				ctx.fillStyle = gradient;
+				ctx.fillRect(0, 0, 1000,1000);
+			// coordinates of images to cut from big image	
+			var sCoOrds = [
+							{"x": 0, "y": 0 ,"w": 150 , "h": 170 },
+							{"x": 200, "y": 0 ,"w": 200 , "h": 150 },
+							{"x": 430, "y": 170 ,"w": 220 , "h": 180 },
+							{"x": 0, "y": 300 ,"w": 70 , "h": 380 }
+							]
+			// radnom numbers for placing imagege (rX, rY) and random elements from array
+			var randomX = Math.floor((Math.random() * 600) + 1);
+			var randomY = Math.floor((Math.random() * 400) + 1);
+			var i = Math.floor((Math.random() * 3)); 
+			// on image load function
+			//sets up animation loop
+			function animate () {
+					needlework.onload = function () {
+						//special animation function - accepts the callback function 'animate'
+						for (var j = 0; j<sCoOrds.length-1; j++){
+						window.requestAnimationFrame(animate, can);
+							// drawing image, cutting it and then placing randomly on canvas
+							ctx.drawImage(needlework, sCoOrds[i].x, sCoOrds[i].y, sCoOrds[i].w, sCoOrds[i].h, randomX, randomY, sCoOrds[i].w, sCoOrds[i].h);
+							//movement code
+							randomX = randomX + 10 * time;
+							randomY = randomY + 10 * time;
+							time = time + 0.1;
+							console.log(time);
+						}
+					}
+			};
+			//call it once to kick it off 
+			//after that it recursively calls itself
+			window.requestAnimationFrame(animate, can);
+						
+		});
+	</script>
+</head>
+<body>
+<canvas id="myCanvas" width="600" height="400">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+</body>
+</html>
