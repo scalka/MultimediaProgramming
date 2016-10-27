@@ -1,0 +1,56 @@
+<html>
+<!-- In a Canvas of 720 x 160 recreate the old Gillette add.
+ Load the image "babyAddMixedUp.jpg" and use the crop function of
+the drawImage method to cut out 160 x240 pixel segments and place
+them in the correct position  -->
+<head>
+	<title>Drawings</title>
+	<style>
+		canvas {
+			border: 1px solid #000000;
+		}
+	</style>
+	<script>
+		// global var
+		var can, ctxt, gradient;
+
+		function intit () {
+			// this access the canvas element in the DOM
+			console.log("Init function");
+			// setting 2d context 
+			can = document.getElementById("myCanvas");
+			ctx = can.getContext("2d");
+			console.log(can, ctx);
+
+			// ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+
+			// sx, sy Optional. The x,y coordinate where to start clipping
+			// swidth, sheight Optional. The width, length of the clipped image
+			// x,y coordinate where to place the image on the canvas
+			// width, height of the image to use (stretch or reduce the image)
+
+			var babyImage = new Image()
+				babyImage.src = "babyAddMixedUp.jpg";
+				babyImage.onload = function(){
+					ctx.drawImage(babyImage, 0, 0, 160, 240, 0, 0, 160, 240);
+					ctx.drawImage(babyImage, 320, 240, 160, 240, 160, 0, 160, 240);
+					ctx.drawImage(babyImage, 0, 240, 160, 240, 320, 0, 160, 240);
+					ctx.drawImage(babyImage, 160, 240, 160, 240, 0, 240, 160, 240);
+					ctx.drawImage(babyImage, 160, 0, 160, 240, 160, 240, 160, 240);
+					ctx.drawImage(babyImage, 480, 0, 160, 240, 320, 240, 160, 240);
+					ctx.drawImage(babyImage, 480, 240, 160, 240, 0, 480, 160, 240);
+					ctx.drawImage(babyImage, 320, 0, 160, 240, 160, 480, 160, 240);
+					ctx.drawImage(babyImage, 640, 0, 160, 240, 320, 480, 160, 240);
+}
+
+}
+
+
+	</script>
+</head>
+<body onload="intit()">
+<canvas id="myCanvas" width="480" height="800">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!-- Create a pattern from wallpaper.jpg that patterns a rectangle of
+width and height of canvas. Create 3 image objects and display
+"frame.png" and "artwork.jpg". Position them in such a way that the
+artworks are shown inside the frame  -->
+ <html>
+<head>
+	<title>Drawings</title>
+	<style>
+		canvas {
+			border: 1px solid #000000;
+		}
+	</style>
+	<script>
+		// global var
+		var can, ctxt, gradient;
+
+		function intit () {
+			// this access the canvas element in the DOM
+			console.log("Init function");
+			// setting 2d context 
+			can = document.getElementById("myCanvas");
+			ctxt = can.getContext("2d");
+			console.log(can, ctxt);
+
+
+
+			var wallpaper = new Image();
+				wallpaper.onload = function(){
+					var pat = ctxt.createPattern(wallpaper, 'repeat');
+						ctxt.rect(0,0,can.width, can.height);
+						ctxt.fillStyle = pat;
+						ctxt.fill();	
+				}
+				wallpaper.src = "wallpaper.jpg";
+
+			var rembrandt = new Image();
+				rembrandt.src = "rembrandt.jpg"
+				rembrandt.onload = function(){
+					ctxt.drawImage(rembrandt, 135, 30);
+				}
+			var frame = new Image();
+				frame.src = "frame.png"
+				frame.onload = function(){
+					ctxt.drawImage(frame, 130, 25);
+				}	
+
+		}
+
+
+	</script>
+</head>
+<body onload="intit()">
+<canvas id="myCanvas" width="400" height="200">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+</body>
+</html>
