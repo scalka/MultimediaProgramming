@@ -1,3 +1,6 @@
+<!--  TODO add explosion from lab8 
+start anim and do once
+-->
 <!doctype html>
 <html lang="en">
 	<head>
@@ -31,14 +34,6 @@
 			char1Walk.left = {frames: [{x:0,y:51},{x:32,y:51},{x:64,y:51}], velocity : {vx:-1, vy: 0}};
 			char1Walk.right = {frames: [{x:0,y:102},{x:32,y:102},{x:64,y:102}], velocity : {vx:1, vy: 0}};
 			char1Walk.up =  {frames: [{x:0,y:153},{x:32,y:153},{x:64,y:153}], velocity : {vx:0, vy: -1}};
-			// character 2
-			char2Walk = new Object();
-			char2Walk.static = {frames: [{x:96,y:0}], velocity : {vx:0, vy: 0}};
-			char2Walk.down = {frames: [{x:96,y:0},{x:128,y:0},{x:160,y:0}], velocity : {vx:0, vy: 1}};
-			char2Walk.left = {frames: [{x:96,y:51},{x:128,y:51},{x:160,y:51}], velocity : {vx:-1, vy: 0}};
-			char2Walk.right = {frames: [{x:96,y:153},{x:128,y:153},{x:160,y:153}], velocity : {vx:1, vy: 0}};
-			char2Walk.up =  {frames: [{x:96,y:102},{x:128,y:102},{x:160,y:102}], velocity : {vx:0, vy: -1}};
-			//functions to return frames and velocity
 			char1Walk.returnAnim =  function(str) {
 				//returns entire objcts ---- return this[str];
 				// returns frames
@@ -47,6 +42,15 @@
 			char1Walk.returnVelocity =  function(str) {
 				return this[str].velocity;
 			};
+
+			// character 2
+			char2Walk = new Object();
+			char2Walk.static = {frames: [{x:96,y:0}], velocity : {vx:0, vy: 0}};
+			char2Walk.down = {frames: [{x:96,y:0},{x:128,y:0},{x:160,y:0}], velocity : {vx:0, vy: 1}};
+			char2Walk.left = {frames: [{x:96,y:51},{x:128,y:51},{x:160,y:51}], velocity : {vx:-1, vy: 0}};
+			char2Walk.right = {frames: [{x:96,y:153},{x:128,y:153},{x:160,y:153}], velocity : {vx:1, vy: 0}};
+			char2Walk.up =  {frames: [{x:96,y:102},{x:128,y:102},{x:160,y:102}], velocity : {vx:0, vy: -1}};
+			//functions to return frames and velocity
 			char2Walk.returnAnim =  function(str) {
 				//returns entire objcts ---- return this[str];
 				// returns frames
@@ -55,6 +59,7 @@
 			char2Walk.returnVelocity =  function(str) {
 				return this[str].velocity;
 			};
+
 			function init() {
 				console.log("hello init");
 				can =  document.getElementById("canvas");
@@ -62,8 +67,8 @@
 				count = 0;
 				dx = can.width/2;
 				dy = can.height/2;
-				dx2 = can.width/2;
-				dy2 = can.width/2;
+				dx2 = 20;
+				dy2 = 150;
 				drawLoop();
 			}
 			// to draw 2 characters - only one request possible
@@ -92,6 +97,7 @@
 				//get the frames info of the current Animation  -- frames coordinates
              	var xSource = curAnim[count].x;
                 var ySource = curAnim[count].y;
+				//curVel = curAnim.velocity
                 //get Velocity info from curAnim object
                 curVel = char1Walk.returnVelocity(motion);
                 vx = curVel.vx;
@@ -111,7 +117,7 @@
                	vy2 = curVel2.vy; 
                	dx2 += vx2;
                	dy2 += vy2;
-               	ctx.drawImage(walkImg, xSource2, ySource2, frameW, frameH, dx2, dy2, frameW, frameH);
+               	ctx.drawImage(walkImg, xSource2, ySource2, frameW, frameH, dx2+50, dy2+100, frameW, frameH);
 			}
 			// switch statement for keys pressed
 			function checkKeys(e){
@@ -137,6 +143,7 @@
 						motion = "static";
 				}
 		}	
+
 		</script>
 		<style>
 		 canvas{ background:url(background.jpg)}
