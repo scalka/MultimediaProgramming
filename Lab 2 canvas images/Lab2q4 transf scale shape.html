@@ -1,0 +1,93 @@
+<!--  Create a function that creates a shape. this could be the cloud or the
+triangle from the last lab. Create a number of examples where this
+shape gets modified using the translate, scale and rotate transforms.
+You might need to create a number of canvases to show this.
+   -->
+<html>
+<head>
+	<title>shape</title>
+	<style>
+		canvas {
+			border: 1px solid #000000;
+		}
+	</style>
+	<script>
+		// global var
+		var can, ctxt, gradient;
+
+		function intit () {
+			// this access the canvas element in the DOM
+			console.log("Init function");
+			// setting 2d contexts and canvas
+			can = document.getElementById("myCanvas");
+			ctx = can.getContext("2d");
+			can2 = document.getElementById("my2Canvas");
+			ctx2 = can2.getContext("2d");
+			can3 = document.getElementById("my3Canvas");
+			ctx3 = can3.getContext("2d");
+			// can 1
+			for (var i=0;i<3;i++) {
+				for (var j=0;j<3;j++) {
+				ctx.save();
+				//spool crop
+				ctx.translate(120+j*100, 50+i*100);
+				//ctx.scale(i*0.25+.1,j*0.25+.1);
+				drawTriangle(ctx, 0, 0, 80,80, 10, 'orange', 'grey');
+				ctx.restore();
+				}
+			}
+			// can 2
+			for (var i=0;i<7;i++) {
+				for (var j=0;j<7;j++) {
+				ctx2.save();
+				//spool crop
+				ctx2.translate(50*j, 100*j);
+				ctx2.scale(i*0.5+.1, j*0.25+.1);
+				drawTriangle(ctx2, 0, 0, 80,80, 10, 'orange', 'grey');
+				ctx2.restore();
+				}
+			}
+			// can 3
+			for (var i=0;i<22;i++) {
+				for (var j=0;j<22;j++) {
+				ctx3.save();
+				//spool crop
+				ctx3.translate(50*j, 50*j);
+				ctx3.scale(i*0.25+.1, j*0.25+.1);
+				drawTriangle(ctx3, 0, 0, 10,10, 10, 'orange', 'grey');
+				ctx3.restore();
+				}
+			}
+
+		}
+
+
+		function drawTriangle(ctxt, xPos, yPos, width, height, line, color1, color2){
+
+			ctxt.beginPath();
+				ctxt.moveTo( xPos, yPos-height/2);
+				ctxt.lineTo( xPos + height/2 , yPos + height/2 );
+				ctxt.lineTo(xPos-width/2, yPos+height/2);
+			ctxt.closePath();	
+
+			ctxt.fillStyle = color1;
+			ctxt.fill();
+			ctxt.strokeStyle = color2;
+			ctxt.lineWidth = line;
+			ctxt.stroke();
+		};	
+
+	</script>
+</head>
+<body onload="intit()">
+<canvas id="myCanvas" width="600" height="400">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+<canvas id="my2Canvas" width="600" height="400">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+<canvas id="my3Canvas" width="600" height="400">
+	Your browser can't render the canvas. Please upgrade.
+</canvas>
+</body>
+</html>

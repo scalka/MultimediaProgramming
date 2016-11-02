@@ -1,0 +1,69 @@
+<html>
+<!-- Create a method drawPieChart(). The method accepts as an argument an
+array that gives the Percentages. This must add up to 100 or else the
+method aborts.
+ If this test is completed the function will draw a pie that corresponds to
+the percentage,i.e it will draw a semi-circle for a percentage of 50%.
+ The function exits when all the pie segments have been drawn.
+ Fill the pie segments with a random colour. -->
+<head>
+	<title>Pie chart</title>
+	<style>
+		canvas {
+			border: 1px solid #000000;
+		}
+	</style>
+	<script>
+		// global var
+		var can, ctx, gradient;
+		var centerCircleX = 300;
+		var centerCircleY = 300;
+		var radius = 100;
+		var percentage = [20, 5,  15, 10,  50];
+		var colors = ['red', 'green', 'blue', 'orange', 'yellow'];
+		var total = 0;
+		//start anggle
+		var lastend =0;
+
+		function intit () {
+			// this access the canvas element in the DOM
+			console.log("Init function");
+			// setting 2d context 
+			can = document.getElementById("myCanvas");
+			ctx = can.getContext("2d");
+			console.log(can, ctx);
+			drawPieChart(percentage, colors);
+			
+		}
+
+		function drawPieChart(percentage, colors){
+			// sum up elements in percentage
+			for (var i in percentage){
+				total += percentage[i];
+				// if percentage == 100
+				if (total == 100) {
+					console.log("eq 100");
+					for (var j=0; j<percentage.length; j++){
+						ctx.fillStyle = colors[j];
+						ctx.beginPath();
+						ctx.moveTo(centerCircleX, centerCircleY);
+						ctx.arc(centerCircleX, centerCircleY, radius, lastend, lastend+(Math.PI*2*(percentage[j]/total)), false);
+						ctx.lineTo(centerCircleX, centerCircleY)
+						ctx.fill();
+						lastend += Math.PI*2*(percentage[j]/total);
+					}
+					
+				} else {
+					console.log("not 100");
+				}
+			}
+
+		}			
+	</script>
+</head>
+<body onload="intit()">
+	<canvas id="myCanvas" width="1000" height="1000">
+		Your browser can't render the canvas. Please upgrade.
+	</canvas>
+</body>
+</html>
