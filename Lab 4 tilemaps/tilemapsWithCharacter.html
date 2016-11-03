@@ -1,3 +1,7 @@
+<!-- init
+f. renderLoop with characters
+f. render background 
+ -->
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,33 +10,31 @@
 		<script type="text/javascript" src="raf.js"></script>
 		<script type="text/javascript">
 			var canvas, context;
-			var levelCols=11;							// level width, in tiles
-			var levelRows=9;							// level height, in tiles
+			var levelCols=11;							// level width, in tiles used in a loop while rendering background
+			var levelRows=9;							// level height, in tiles used in a loop while rendering background
 			var tileSize=64;							// tile size, in pixels
-			var can, ctx;
-			var count = 0;
-			var dx, dy, dx2, dy2;
-			var vx, vy, vx2, vy2;
-			//variables are used to slow down animation
-			var sloMoCounter = 0;
+			var count = 0;								// count number of frames
+			var dx, dy, dx2, dy2;						// 
+			var vx, vy, vx2, vy2;						// velocity of char1 and char2
+			
+			var sloMoCounter = 0;						//variables are used to slow down animation
 			var sloMoRate = 4;
-			var motion="static";
-			var walkImg = new Image();
-			var frameW = 32;
+			var motion="static";						//defines what state the char is 
+			var frameW = 32;							//based on a png and size of image
 			var frameH = 51;
-			var curAnim, curAnim2, curFrames, curVel, curVel2;
-			var character;
-			var character1;
-			var character2; //will contain the object for character1 walking;
-			var char1Walk, char2Walk;
+			var curAnim, curAnim2, curFrames, curVel, curVel2; // current
+			var character, character1, character2; //will contain the object for character1 walking;
+			var char1Walk, char2Walk; // image object
+			
+			var walkImg = new Image();
 			walkImg.src = "../Lab 3 spritesheet/characters.png";
 			// character 1
 			char1Walk = new Object();
-			char1Walk.static = {frames: [{x:32,y:0}], velocity : {vx:0, vy: 0}};
-			char1Walk.down = {frames: [{x:0,y:0},{x:32,y:0},{x:64,y:0}], velocity : {vx:0, vy: 1}};
-			char1Walk.left = {frames: [{x:0,y:51},{x:32,y:51},{x:64,y:51}], velocity : {vx:-1, vy: 0}};
-			char1Walk.right = {frames: [{x:0,y:102},{x:32,y:102},{x:64,y:102}], velocity : {vx:1, vy: 0}};
-			char1Walk.up =  {frames: [{x:0,y:153},{x:32,y:153},{x:64,y:153}], velocity : {vx:0, vy: -1}};
+				char1Walk.static = {frames: [{x:32,y:0}], velocity : {vx:0, vy: 0}};
+				char1Walk.down = {frames: [{x:0,y:0},{x:32,y:0},{x:64,y:0}], velocity : {vx:0, vy: 1}};
+				char1Walk.left = {frames: [{x:0,y:51},{x:32,y:51},{x:64,y:51}], velocity : {vx:-1, vy: 0}};
+				char1Walk.right = {frames: [{x:0,y:102},{x:32,y:102},{x:64,y:102}], velocity : {vx:1, vy: 0}};
+				char1Walk.up =  {frames: [{x:0,y:153},{x:32,y:153},{x:64,y:153}], velocity : {vx:0, vy: -1}};
 			char1Walk.returnAnim =  function(str) {
 				//returns entire objcts ---- return this[str];
 				// returns frames
@@ -41,14 +43,13 @@
 			char1Walk.returnVelocity =  function(str) {
 				return this[str].velocity;
 			};
-
 			// character 2
 			char2Walk = new Object();
-			char2Walk.static = {frames: [{x:96,y:0}], velocity : {vx:0, vy: 0}};
-			char2Walk.down = {frames: [{x:96,y:0},{x:128,y:0},{x:160,y:0}], velocity : {vx:0, vy: 1}};
-			char2Walk.left = {frames: [{x:96,y:51},{x:128,y:51},{x:160,y:51}], velocity : {vx:-1, vy: 0}};
-			char2Walk.right = {frames: [{x:96,y:153},{x:128,y:153},{x:160,y:153}], velocity : {vx:1, vy: 0}};
-			char2Walk.up =  {frames: [{x:96,y:102},{x:128,y:102},{x:160,y:102}], velocity : {vx:0, vy: -1}};
+				char2Walk.static = {frames: [{x:96,y:0}], velocity : {vx:0, vy: 0}};
+				char2Walk.down = {frames: [{x:96,y:0},{x:128,y:0},{x:160,y:0}], velocity : {vx:0, vy: 1}};
+				char2Walk.left = {frames: [{x:96,y:51},{x:128,y:51},{x:160,y:51}], velocity : {vx:-1, vy: 0}};
+				char2Walk.right = {frames: [{x:96,y:153},{x:128,y:153},{x:160,y:153}], velocity : {vx:1, vy: 0}};
+				char2Walk.up =  {frames: [{x:96,y:102},{x:128,y:102},{x:160,y:102}], velocity : {vx:0, vy: -1}};
 			//functions to return frames and velocity
 			char2Walk.returnAnim =  function(str) {
 				//returns entire objcts ---- return this[str];
@@ -58,57 +59,53 @@
 			char2Walk.returnVelocity =  function(str) {
 				return this[str].velocity;
 			};
-
+			// defines the tiles for a level
+			var level = [        						// the 11x9 level - 1=wall, 0=empty space
+				[1,1,1,1,1,1,1,1,1,1,1],
+				[1,0,0,0,0,0,0,0,0,1,1],
+				[1,0,0,1,0,0,0,0,0,0,1],
+				[1,0,0,0,1,0,1,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,1,0,1,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,1],
+				[1,1,0,0,0,0,0,0,0,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1]
+			];
 
 			function init() {
 				canvas =  document.getElementById("canvas");
 				context = canvas.getContext("2d");
-					count = 0;
-					dx = canvas.width/2;
-					dy = canvas.height/2;
-					dx2 = 20;
-					dy2 = 150;
-					drawLoop();
-
-					var level = [        						// the 11x9 level - 1=wall, 0=empty space
-						[1,1,1,1,1,1,1,1,1,1,1],
-						[1,0,0,0,0,0,0,0,0,1,1],
-						[1,0,0,1,0,0,0,0,0,0,1],
-						[1,0,0,0,1,0,1,0,0,0,1],
-						[1,0,0,0,0,0,0,0,0,0,1],
-						[1,0,0,0,1,0,1,0,0,0,1],
-						[1,0,0,0,0,0,0,0,0,0,1],
-						[1,1,0,0,0,0,0,0,0,1,1],
-						[1,1,1,1,1,1,1,1,1,1,1]
-					];
-
+				count = 0;
+				dx = canvas.width/2;
+				dy = canvas.height/2;
+				dx2 = 20;
+				dy2 = 150;
+				drawLoop();
 			};
 
-		// function to display the level
-		function renderLevel(){
-			// clear the canvas
-			context.clearRect(0, 0, canvas.width, canvas.height);
-			// walls = red boxes
-			context.fillStyle = "#ffff00";
-			for(i=0;i<levelRows;i++){
-				for(j=0;j<levelCols;j++){
-					if(level[i][j]==1){
-						context.fillRect(j*tileSize,i*tileSize,tileSize,tileSize);	
+			// function to display the level - tiles
+			function renderLevel(){
+				// clear the canvas
+				//context.clearRect(0, 0, canvas.width, canvas.height);
+				// walls = red boxes
+				context.fillStyle = "#009933";
+
+				for(i=0;i<levelRows;i++){
+					for(j=0;j<levelCols;j++){
+						if(level[i][j]==1){
+							context.fillRect(j*tileSize,i*tileSize,tileSize,tileSize);	
+						}
 					}
 				}
-			}
-			// player = green box
-			context.fillStyle = "#00ff00";
 
-			context.save();
-		//	context.translate(playerXPos +10, playerYPos + 10  );
-			context.fillRect(0,0,tileSize-20,tileSize-20);
-			context.restore();
-		}
-		// to draw 2 characters - only one request possible
+				context.restore();
+			}
+
+			// to draw 2 characters - only one request possible
 			function drawLoop(){		
 				myAnimation = requestAnimationFrame(drawLoop);
-				context.clearRect(0, 0, canvas.width, canvas.height);		
+				context.clearRect(0, 0, canvas.width, canvas.height);	
+				renderLevel();	
 				char1Draw();
 				char2Draw();
 				//slowMo Counter slows down the Animation
@@ -139,7 +136,7 @@
                	dx+=vx;
                	dy+=vy;                 
                 //finally draw the frame of the animation to the canvas
-				ctx.drawImage(walkImg, xSource, ySource, frameW, frameH, dx, dy, frameW, frameH);      
+				context.drawImage(walkImg, xSource, ySource, frameW, frameH, dx, dy, frameW, frameH);      
 			}
 			// character 2
 			function char2Draw(){
@@ -151,7 +148,7 @@
                	vy2 = curVel2.vy; 
                	dx2 += vx2;
                	dy2 += vy2;
-               	ctx.drawImage(walkImg, xSource2, ySource2, frameW, frameH, dx2+50, dy2+100, frameW, frameH);
+               	context.drawImage(walkImg, xSource2, ySource2, frameW, frameH, dx2+50, dy2+100, frameW, frameH);
 			}
 			// switch statement for keys pressed
 			function checkKeys(e){
