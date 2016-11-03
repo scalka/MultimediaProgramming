@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Spritesheet Walking No. 2</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+			var canvas, context;
+			var levelCols=11;							// level width, in tiles
+			var levelRows=9;							// level height, in tiles
+			var tileSize=64;							// tile size, in pixels
+		//	var playerCol=5;                                  // player starting column
+		//	var playerRow=4;                                  // player starting row
+		//	var leftPressed=false;                            // are we pressing LEFT arrow key?
+		//	var rightPressed=false;                           // are we pressing RIGHT arrow key?
+		//	var upPressed=false;                              // are we pressing UP arrow key?
+		//	var downPressed=false;                            // are we pressing DOWN arrow key?
+		//	var movementSpeed=3;                              // the speed we are going to move, in pixels per frame
+		//	var playerXSpeed=0;                               // player horizontal speed, in pixels per frame
+		//
+		//	var playerYSpeed=0;                               // player vertical speed, in pixels per frame
+
+		console.log("hello init");
+		canvas =  document.getElementById("canvas");
+		context = canvas.getContext("2d");
+
+		var level = [        						// the 11x9 level - 1=wall, 0=empty space
+			[1,1,1,1,1,1,1,1,1,1,1],
+			[1,0,0,0,0,0,0,0,0,1,1],
+			[1,0,0,1,0,0,0,0,0,0,1],
+			[1,0,0,0,1,0,1,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,1,0,1,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,1],
+			[1,1,0,0,0,0,0,0,0,1,1],
+			[1,1,1,1,1,1,1,1,1,1,1]
+		];
+		renderLevel();
+
+		// function to display the level
+		function renderLevel(){
+			// clear the canvas
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			// walls = red boxes
+			context.fillStyle = "#ffff00";
+			for(i=0;i<levelRows;i++){
+				for(j=0;j<levelCols;j++){
+					if(level[i][j]==1){
+						context.fillRect(j*tileSize,i*tileSize,tileSize,tileSize);	
+					}
+				}
+			}
+			// player = green box
+			context.fillStyle = "#00ff00";
+
+			context.save();
+		//	context.translate(playerXPos +10, playerYPos + 10  );
+			context.fillRect(0,0,tileSize-20,tileSize-20);
+			context.restore();
+		}
+	});
+		</script>
+		<style>
+		 
+		</style>
+	</head>
+	<body onkeydown="checkKeys(event)">
+		<canvas id="canvas" width="800" height="1000">
+			Canvas is not supported
+		</canvas>
+	</body>
+</html>
