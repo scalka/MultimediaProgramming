@@ -12,7 +12,7 @@ f. render background
 			var canvas, context;
 			var levelCols=11;							// level width, in tiles used in a loop while rendering background
 			var levelRows=9;							// level height, in tiles used in a loop while rendering background
-			var tileSize=64;							// tile size, in pixels
+			var tileSize=32;							// tile size, in pixels
 			var count = 0;								// count number of frames
 			var dx, dy, dx2, dy2;						// 
 			var vx, vy, vx2, vy2;						// velocity of char1 and char2
@@ -25,9 +25,17 @@ f. render background
 			var curAnim, curAnim2, curFrames, curVel, curVel2; // current
 			var character, character1, character2; //will contain the object for character1 walking;
 			var char1Walk, char2Walk; // image object
+
+			var baseCol = Math.floor(dx/tileSize);
+            var baseRow = Math.floor(dy/tileSize);
+            var colOverlap = dx%tileSize;
+            var rowOverlap = dy%tileSize;
 			
 			var walkImg = new Image();
 			walkImg.src = "../Lab 3 spritesheet/characters.png";
+			var tileImg = new Image();
+			tileImg.src= "tiles32x32.png";
+
 			// character 1
 			char1Walk = new Object();
 				char1Walk.static = {frames: [{x:32,y:0}], velocity : {vx:0, vy: 0}};
@@ -61,15 +69,15 @@ f. render background
 			};
 			// defines the tiles for a level
 			var level = [        						// the 11x9 level - 1=wall, 0=empty space
-				[1,1,1,1,1,1,1,1,1,1,1],
-				[1,0,0,0,0,0,0,0,0,1,1],
-				[1,0,0,1,0,0,0,0,0,0,1],
-				[1,0,0,0,1,0,1,0,0,0,1],
-				[1,0,0,0,0,0,0,0,0,0,1],
-				[1,0,0,0,1,0,1,0,0,0,1],
-				[1,0,0,0,0,0,0,0,0,0,1],
-				[1,1,0,0,0,0,0,0,0,1,1],
-				[1,1,1,1,1,1,1,1,1,1,1]
+				[2,5,5,5,5,5,5,5,5,5,6],
+				[3,1,1,1,1,1,1,1,1,1,7],
+				[3,1,1,1,1,1,1,1,1,1,7],
+				[3,1,1,1,1,10,1,1,1,1,7],
+				[3,1,1,1,1,11,1,1,1,1,7],
+				[3,1,1,1,1,1,1,1,1,1,7],
+				[3,1,1,1,1,1,1,1,1,1,7],
+				[3,1,1,1,1,1,1,1,1,1,7],
+				[4,9,9,9,9,9,9,9,9,9,8]
 			];
 
 			function init() {
@@ -81,20 +89,35 @@ f. render background
 				dx2 = 20;
 				dy2 = 150;
 				drawLoop();
-			};
+			}
 
 			// function to display the level - tiles
 			function renderLevel(){
-				// clear the canvas
-				//context.clearRect(0, 0, canvas.width, canvas.height);
 				// walls = red boxes
 				context.fillStyle = "#009933";
 
 				for(i=0;i<levelRows;i++){
 					for(j=0;j<levelCols;j++){
 						if(level[i][j]==1){
-							context.fillRect(j*tileSize,i*tileSize,tileSize,tileSize);	
-						}
+							context.fillRect(j*tileSize,i*tileSize,tileSize,tileSize);
+							//context.drawImage(tileImg, 10 + (32*6), 2*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );		
+						} else if (level[i][j]==2){
+							context.drawImage(tileImg, 10 + (32*6), 3*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} else if (level[i][j]==3){
+							context.drawImage(tileImg, 10 + (32*6), 4*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} else if (level[i][j]==4){
+							context.drawImage(tileImg, 10 + (32*6), 5*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} else if (level[i][j]==5){
+							context.drawImage(tileImg, 10 + (32*7), 3*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} else if (level[i][j]==6){
+							context.drawImage(tileImg, 10 + (32*8), 3*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} else if (level[i][j]==7){
+							context.drawImage(tileImg, 10 + (32*8), 4*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} else if (level[i][j]==8){
+							context.drawImage(tileImg, 10 + (32*8), 5*32, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} else if (level[i][j]==9){
+							context.drawImage(tileImg, 10 + (32*7), 5*32  , tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize );	
+						} 
 					}
 				}
 
@@ -136,7 +159,9 @@ f. render background
                	dx+=vx;
                	dy+=vy;                 
                 //finally draw the frame of the animation to the canvas
-				context.drawImage(walkImg, xSource, ySource, frameW, frameH, dx, dy, frameW, frameH);      
+				context.drawImage(walkImg, xSource, ySource, frameW, frameH, dx, dy, frameW, frameH);   
+
+  
 			}
 			// character 2
 			function char2Draw(){
