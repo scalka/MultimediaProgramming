@@ -1,3 +1,5 @@
+// TODO finished on slide 15th, with tile 
+
 var game; // contains game
 var bgColors = [0xF1645, 0xFFC65D, 0x7BC8A4, 0x4CC3D9, 0x93648D, 0x7C786A, 0x588C73, 0x2A5B84];
 
@@ -57,10 +59,17 @@ var titleScreen = function(game){};
     titleScreen.prototype = {
         create: function(){
             console.log("==title Screen state. Create method");
+            //creating a tiled background from backslash title, repeat grayscale tile: “backsplash” in the Y direction
+            var titleBg = game.add.tileSprite(0, 0, game.width, game.height, "backsplash");
+            titleBg.tint = bgColors[game.rnd.between(0, bgColors.length-1)]; // phaser's random function
+            console.log("titleBg.tint");
+            
             game.stage.backgroundColor = bgColors[game.rnd.between(0, bgColors.length - 1)];
             //title
             var title = game.add.image(game.width/2, 210, "title");
             title.anchor.set(0.5);
+            
+            
             //playbutton
             var playButton = game.add.button(game.width/2, game.height-150, "playbutton", this.startGame);
             playButton.anchor.set(0.5);
