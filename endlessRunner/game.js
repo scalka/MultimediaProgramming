@@ -4,7 +4,11 @@ var game; // contains game
 var bgColors = [0xF1645, 0xFFC65D, 0x7BC8A4, 0x4CC3D9, 0x93648D, 0x7C786A, 0x588C73, 0x2A5B84];
 var tunnelWidth = 256;
 var shipHorizontalSpeed = 100;
+var shipVerticalSpeed = 15000;
 var shipMoveDelay = 0;
+var swipeDistance = 10;
+var barrierSpeed = 280;
+var barrierGap = 120;
 
 window.onload = function () {
     console.log("==onload event");
@@ -53,6 +57,7 @@ var preload = function(game){};
             game.load.image("wall", "assets/sprites/wall.png");
             game.load.image("ship", "assets/sprites/ship.png");
             game.load.image("smoke", "assets/sprites/smoke.png");
+            game.load.image("barrier", "assets/sprites/barrier.png");
 
         },
         create: function () {
@@ -89,8 +94,6 @@ var titleScreen = function(game){};
         }
     };
 
-
-
 //playGame State
 var playGame = function(game){};
 playGame.prototype = {  
@@ -116,11 +119,13 @@ playGame.prototype = {
         this.ship.anchor.set(0.5);
          //enable physice
         this.game.physics.enable(this.ship, Phaser.Physics.ARCADE);
-         //boolean to check that ship can Move
-        this.ship.canMove = true;
-        //react to tap or click
-        game.input.onDown.add(this.moveShip, this);
-        
+        this.ship.canMove = true;  //boolean to check that ship can Move
+        this.ship.canSwipe = false; //swipe to move ship back
+        game.input.onDown.add(this.moveShip, this); //react to tap or click
+        //swipe sets the flag to false
+        game.input.onUp.add(function(){
+            this.ship.canSwipe = false;
+        }, this);
         //smoke emitter
         this.smokeEmitter = game.add.emitter(this.ship.x, this.ship.y +10, 20);
         this.smokeEmitter.makeParticles("smoke");
@@ -129,15 +134,17 @@ playGame.prototype = {
         this.smokeEmitter.setAlpha(0.5, 1);
         //1 particle last for 1s and new one is genereated every 4ms
         this.smokeEmitter.start(false, 1000,40);
-			
-	},
-    update: function(){
-            this.smokeEmitter.x = this.ship.x;
-            this.smokeEmitter.y = this.ship.y;
-        },
-	
+        //ship rises over 15 seconds
+        this.verticalTween = game.add.tween(this.ship).to({
+            y:0
+        }, shipVerticalSpeed, Phaser.Easing.Linear.None, true);		
+        //add barrier creation to create function to playGame
+        this.barrierGroup = game.add.group(); //adds group to game
+        this.addBarrier(this.barrierGroup, tintColor);
+	},	
 	moveShip: function(){
-               
+        // onDown triggers moveShip. Here we set the canSwipe flag to true
+        this.ship.canSwipe = true;
         if(this.ship.canMove){
             this.ship.canMove = false;
             this.ship.side = 1 - this.ship.side; //toggles between 0 and 1.
@@ -165,11 +172,72 @@ playGame.prototype = {
         ghostTween.onComplete.add(function(){
             ghostShip.destroy();
         });
-	}		
+    },
+    update: function(){
+        this.smokeEmitter.x = this.ship.x;
+        this.smokeEmitter.y = this.ship.y;
+        if (this.ship.canSwipe){
+            if(Phaser.Point.distance(game.input.activePointer.positionDown, game.input.activePointer.position) > swipeDistance){
+                this.restartShip();
+            }
+        }
+        //collision detection
+        game.physics.arcade.collide(this.ship, this.barrierGroup, function(s,b){
+            game.state.start("GameOverScreen");
+        })
+    },	
+    restartShip: function(){
+        this.ship.canSwipe = false;
+        this.verticalTween.stop();
+        this.verticalTween = game.add.tween(this.ship).to({
+            y: 860
+        }, 100, Phaser.Easing.Linear.None, true);
+        this.verticalTween.onComplete.add(function(){
+            this.verticalTween = game.add.tween(this.ship).to({
+                y:0
+            }, shipVerticalSpeed, Phaser.Easing.Linear.None, true);
+        }, this)
+    },
+    addBarrier: function(group, tintColor){
+        var barrier = new Barrier(game, barrierSpeed, tintColor);
+        game.add.existing(barrier);
+        //add it to the barrier group
+        group.add(barrier);
+    }
 };
-var gameOverScreen = function (game){};
+var gameOverScreen = function (game){}
+    gameOverScreen.prototype = {
+        create: function(){
+            console.log("==gameOverScreen state. Create method");
+        }
+    }
 
 
+Barrier = function(game, speed, tintColor){
+   var positions = [(game.width - tunnelWidth)/2, (game.width + tunnelWidth)/2];
+    var position = game.rnd.between(0,1);
+    Phaser.Sprite.call(this, game, positions[position], -100, "barrier");
+    var cropRect = new Phaser.Rectangle(0,0,tunnelWidth/2,24);
+    this.crop(cropRect);
+    game.physics.enable(this, Phaser.Physics.ARCADE);
+    this.anchor.set(position, 0.5);
+    this.tint = tintColor;
+    this.body.velocity.y = speed;
+    //switch to check if a new barrier should be placed
+    this.placeBarrier = true;
+};
+Barrier.prototype = Object.create(Phaser.Sprite.prototype);
+Barrier.prototype.constructor = Barrier;
+Barrier.prototype.update = function(){
+    if (this.placeBarrier && this.y > barrierGap){
+        this.placeBarrier = false;
+        //run addBarrier function, pass the parent 
+        playGame.prototype.addBarrier(this.parent, this.tint);
+    }
+    if(this.y > game.height){
+        this.destroy();
+    }
+}
 
 
 
