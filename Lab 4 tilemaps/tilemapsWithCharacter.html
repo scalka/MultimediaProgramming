@@ -1,6 +1,4 @@
-<!-- init
-f. renderLoop with characters
-f. render background 
+<!-- TODO  collision and tiles images for from png
  -->
 <!doctype html>
 <html lang="en">
@@ -143,6 +141,11 @@ f. render background
                 	sloMoCounter = 0;
                 }
                 sloMoCounter++;
+
+
+
+
+
 			}
 			// character 1
 			function char1Draw(){
@@ -161,7 +164,8 @@ f. render background
                 //finally draw the frame of the animation to the canvas
 				context.drawImage(walkImg, xSource, ySource, frameW, frameH, dx, dy, frameW, frameH);   
 
-  
+  				collisionDetection(curVel, dx, dy);
+  				console.log("col");
 			}
 			// character 2
 			function char2Draw(){
@@ -198,6 +202,46 @@ f. render background
 						console.log("default key");
 						motion = "static";
 				}
+			}
+
+			function collisionDetection(curVeloc, dx, dy){
+				var baseCol = Math.floor(dx/tileSize);
+                var baseRow = Math.floor(dy/tileSize);
+                var colOverlap = dx%tileSize;
+                var rowOverlap = dy%tileSize;
+                    
+                	console.log(baseRow*tileSize);
+
+                    if(curVeloc.vx>0){
+                        if((level[baseRow][baseCol+1] && !level[baseRow][baseCol]) || (level[baseRow+1][baseCol+1] && !level[baseRow+1][baseCol] && rowOverlap)){
+                            dx-=curVeloc.vx;
+                        }    
+                    }
+                    
+                    if(curVeloc.vx<0){
+                        if((!level[baseRow][baseCol+1] && level[baseRow][baseCol]) || (!level[baseRow+1][baseCol+1] && level[baseRow+1][baseCol] && rowOverlap)){
+                            dx=(baseCol+1)*tileSize;
+                        }    
+                    }
+                    
+                    // check for vertical collisions
+                    
+                    baseCol = Math.floor(dx/tileSize);
+                    baseRow = Math.floor(dy/tileSize);
+                    colOverlap = dx%tileSize;
+                    rowOverlap = dy%tileSize;
+                            
+                    if(curVeloc.vy>0){
+                        if((level[baseRow+1][baseCol] && !level[baseRow][baseCol]) || (level[baseRow+1][baseCol+1] && !level[baseRow][baseCol+1] && colOverlap)){
+                            dy = baseRow*tileSize;
+                        }    
+                    }
+                    
+                    if(curVeloc.vy<0){
+                        if((!level[baseRow+1][baseCol] && level[baseRow][baseCol]) || (!level[baseRow+1][baseCol+1] && level[baseRow][baseCol+1] && colOverlap)){
+                            dy = (baseRow+1)*tileSize;
+                        }        
+                    }    
 			}
 	
 		</script>
