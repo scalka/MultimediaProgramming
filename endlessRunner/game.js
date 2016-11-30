@@ -176,7 +176,7 @@ var playGame = function(game){};
             this.highlightBar.anchor.set(0.5, 0);
             this.highlightBar.alpha = 0.1;
             this.highlightBar.visible = false;
-            //game24.js: Showing score
+            //game24.js: Showing score - runs a function every 250 ms
 			game.time.events.loop(250, this.updateScore, this);
         },
         updateScore: function() {
