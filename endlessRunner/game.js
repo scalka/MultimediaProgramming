@@ -16,6 +16,7 @@ var shipInvisiblityTime = 1000;
 //Scoring
 var scoreHeight = 100;
 var scoreSegments = [100,50,25,10,5,2,1];
+var score;
 
 window.onload = function () {
     console.log("==onload event");
@@ -110,6 +111,7 @@ var playGame = function(game){};
     playGame.prototype = {  
         create: function(){
               console.log("==playGame state. Create method");
+            score = 0;
              var tintColor = bgColors[game.rnd.between(0, bgColors.length - 1)];
              //tunnel
              var tunnelBG = game.add.tileSprite(0, 0, game.width, game.height, "tunnelbg");
@@ -123,20 +125,22 @@ var playGame = function(game){};
              rightWallBG.tileScale.x = -1;
 
              //scoring
-             for (var i=1;i <= scoreSegments.length; i++) {
+             for (var i=1;i <= scoreSegments.length; i++) {        
                  var leftSeperator = game.add.sprite((game.width - tunnelWidth)/2, scoreHeight* i, "separator");
-                 leftSeperator.tint = tintColor;
-                 leftSeperator.anchor.set(1,0);
-                 var rightSeperator = game.add.sprite((game.width + tunnelWidth)/2, scoreHeight* i, "separator");
-                 rightSeperator.tint = tintColor;
-                 //rightSeparator.anchor.set(1,0);
-                 var posX = (game.width - tunnelWidth)/2 - leftSeperator.width/2;
-                 if(i%2 == 0) {
-                    posX = (game.width + tunnelWidth)/2 + leftSeperator.width/2;
-                 }
-                 game.add.bitmapText(posX, scoreHeight * (i-1) + scoreHeight/2 - 18, "font", scoreSegments[i-1].toString(), 36).anchor.x = 0.5;
-            }
-
+				 leftSeperator.tint = tintColor;
+				 leftSeperator.anchor.set(1,0);
+				 var rightSeperator = game.add.sprite((game.width + tunnelWidth)/2, scoreHeight* i, "separator");
+				 rightSeperator.tint = tintColor;
+				 //rightSeparator.anchor.set(1,0);
+				 var posX = (game.width - tunnelWidth)/2 - leftSeperator.width/2;
+				 if(i%2 == 0) {
+					posX = (game.width + tunnelWidth)/2 + leftSeperator.width/2;
+				 }
+				 game.add.bitmapText(posX, scoreHeight * (i-1) + scoreHeight/2 - 18, "font", scoreSegments[i-1].toString(), 36).anchor.x = 0.5;
+			}
+            //showing score
+            this.scoreText = game.add.bitmapText(20, game.height -90, "font", "0", 40);
+            
             // array of shipPosition, 2 members   
             this.shipPositions = [(game.width - tunnelWidth) / 2 + 32, (game.width + tunnelWidth) / 2 - 32];
             this.ship = game.add.sprite(this.shipPositions[0], 860, "ship");
@@ -172,7 +176,18 @@ var playGame = function(game){};
             this.highlightBar.anchor.set(0.5, 0);
             this.highlightBar.alpha = 0.1;
             this.highlightBar.visible = false;
-        },	
+            //game24.js: Showing score
+			game.time.events.loop(250, this.updateScore, this);
+        },
+        updateScore: function() {
+			if(this.ship.alpha == 1 && !this.ship.destroyed){
+				if(this.ship.y < scoreHeight * scoreSegments.length){
+					var row = Math.floor(this.ship.y / scoreHeight);
+					score += scoreSegments[row];
+					this.scoreText.text = score.toString();
+				}
+			} 
+	},
         moveShip: function(){
             // onDown triggers moveShip. Here we set the canSwipe flag to true
             this.ship.canSwipe = true;
