@@ -9,5 +9,21 @@
   },
   "editorTab": {
     "currentEditorMode": 0
+  },
+  "simulator": {
+    "cordova-simulate": {
+      "tinyhippos-geosettings": {
+        "id": "tinyhippos-geosettings",
+        "key": "geosettings",
+        "value": "{\"position\":{\"latitude\":43.64267410893221,\"longitude\":-80.37654016459754,\"altitude\":100,\"accuracy\":150,\"altitudeAccuracy\":80,\"heading\":0,\"speed\":0,\"timeStamp\":\"new Date(1479928567399)\"},\"delay\":\"0\",\"timeout\":false}",
+        "prefix": "tinyhippos-"
+      },
+      "tinyhippos-geo-map-zoom-key": {
+        "id": "tinyhippos-geo-map-zoom-key",
+        "key": "geo-map-zoom-key",
+        "value": 14,
+        "prefix": "tinyhippos-"
+      }
+    }
   }
 }
