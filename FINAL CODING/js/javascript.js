@@ -4,9 +4,12 @@ console.log("document ready");
 	//init isotope
 	var $bigbox = $('.bigbox').isotope({
 		//options
-		itemSelector: '.bigboxes',
-		layoutMode: 'fitRows',
+		layoutMode: 'masonry',
+		itemSelector: '.bigboxes'
 	});
+	var $bgimage2 = $('.bgimage2').isotope({
+		itemSelector: '.bigimage2'
+	})
 	// filter functions, name is matching data-filter class and a class in the bigbox divs
 	var filterFns = {
 	  drawing: function() {
@@ -56,25 +59,54 @@ console.log("document ready");
 	  media: function() {
 	    var name = $(this).find('.name').text();
 	    return name.match( /media$/ );
-	  }
+	  },
 	};
 	// on smallbox click the filter is applied to the divs and they are displayed accordingly
 	$('.filter-button-group').on( 'click', '.smallboxes', function() {
 	  var filterValue = $( this ).attr('data-filter');
+     // markedBtn = this.  
 	  // use filterFn if matches value
 	  filterValue = filterFns[ filterValue ] || filterValue;
 	  $bigbox.isotope({ filter: filterValue });
 	  console.log("smallbox clicked");
 	});
+
 	// change is-checked class on buttons
 	$('.button-group').each( function( i, buttonGroup ) {
-		console.log("s clicked");
+		console.log("button-group clicked");
 	  var $buttonGroup = $( buttonGroup );
 	  $buttonGroup.on( 'click', '.smallboxes', function() {
+
 	    $buttonGroup.find('.is-checked').removeClass('is-checked');
+	    $buttonGroup.find('.smallboxColor').removeClass('smallboxColor');
+
 	    $( this ).addClass('is-checked');
+	    $( this ).addClass('smallboxColor');
 	  });
 	});
+
 	// end of isotope code
 
+
+    $('a[data-toggle="tooltip"]').tooltip({
+        animated: 'fade',
+        placement: 'bottom',
+        html: true
+    });
+// showig info about vis com when clicked 
+$('.viscomBox').click(function (){
+	console.log("cl");
+    if($('#viscom').is(":not(:visible)") ){
+        $('#viscom').show(); 
+    }else{
+         $('#viscom').hide(); 
+    }
 });
+
+    
+}); // end of $(document).ready(function() 
+
+function smallboxColor(){
+	var box = document.activeElement.tagName;
+
+}

@@ -1,13 +1,11 @@
 body
 {
-    background-color:#FF2E0E;
+  background-color: #FF7900;
 }
-
 
 .bgimage
 {
-    background-image: url(smaller-07.jpg);
-    background-position:center;
+    background-image: url(4.jpg);
     background-size:cover;
     height:100%;
     background-attachment: fixed;
@@ -15,18 +13,17 @@ body
 
 .bgimage2
 {
-    background-image: url(whole%20background%20picture-19-19.jpg);
+    background-image: url(IMG_0033%20kopia2%20kopia.jpg);
     background-position: top;
     background-size:cover;
     background-attachment: fixed;
-    
 }
 
 .heading
 {    
     padding-left: 40px;
     padding-top: 237px;
-    padding-bottom: 150px;
+    padding-bottom: 130px;
 }
 
 .heading1
@@ -36,30 +33,33 @@ body
     color: white;
     padding-top: 200px;
     line-height: 25px;
-    
+}
+
+.heading2
+{
+    font-family: "Anton", sans-serif;
+    font-size: 25px;
+    color: white;
+    line-height: 45px;
+    padding-top: 50px;
+    margin-left: 13px;
 }
 
 .additionalpadding
 {
     padding-left: 45px;
 }
-.cart
-{
-    overflow:hidden;
-    padding:10px 3px;
-    text-align: center;
-}
 
 .navbar-default
 {
     background: none;
-    height: 30px;
+    height: 50px;
     border-bottom-color: transparent;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus 
 {
-    color: #800D6D;
+    color: #FF0000;
     font-size: 25px;
 }
 
@@ -72,6 +72,25 @@ body
 {
     font-family: "Anton";
     font-size: 25px;
+}
+
+.cart 
+{
+    overflow:hidden;
+    padding:10px 3px;
+    background: none;
+    text-align: left;
+    font-family: "Anton", sans-serif;
+    color: white;
+    font-size: 25px;
+    padding-left: 30px;
+    height: 70px;
+}
+
+a:hover
+{
+    color: #FF0000;
+    text-decoration: none;
 }
 
 .logo
@@ -96,15 +115,15 @@ p
 {
     font-family: "Work Sans";
     color: white;
-    line-height: 27px;
-    font-size: 17px;
-    font-weight: normal;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight:normal;
 }
 
-section
+a 
 {
-    height: 0px;
-    background-color: #FF2E0E;
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .smallboxes
@@ -115,13 +134,21 @@ section
     height: 35px;
     margin-top: 45px;
     margin-left: 15px;
+    background-color: transparent;
+}
+.smallboxColor
+{
+    width: 35px;
+    height: 35px;
+    margin-top: 45px;
+    margin-left: 15px;
+    background: #460d50;
 }
 
 .smallboxpadding
 {
     margin-left: -10px;
 }
-
 
 .bigboxes
 {
@@ -140,7 +167,14 @@ section
 
 .box  
 {
-    background-color: #FF7900;
+    background-color: #F4550F;
+    height: 180px;
+    padding: 20px;
+}
+
+.box:active
+{
+    background-color: #613366;
     height: 180px;
     padding: 20px;
 }
@@ -162,14 +196,80 @@ section
     white-space: nowrap;
 }
 
-.subheading
+.subheading1
 {
-    
+    margin-left: 13px;
 }
 
+.subheading2
+{
+    margin-left: -13px;
+    margin-bottom: -50px;
+}
 
+.subheading3
+{
+    margin-left: -25px;
+}
 
+.portfoliopic1
+{
+    padding-top: 100px;
+}
 
+.portfoliopic2
+{
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.endofpage
+{
+    padding-top: 200px;
+    padding-bottom: 50px;
+}
+
+.logopic
+{
+    margin-left: 13px;
+    margin-bottom: 70px;
+    height: 30px;
+}
+
+.adress
+{
+    font-family: "Work Sans";
+    color: white;
+    line-height: 23px;
+    font-size: 13px;
+    font-weight:normal;
+}
+
+.icons
+{
+    padding-top: 0px;
+}
+
+span.highlight 
+{
+    background-color: #FF0000;
+}
+
+span.highlight2
+{
+    background-color: #F4550F;
+}
+
+section
+{
+    height: 100px;
+   
+}
+
+.Step2section
+{
+    background-color: #FF7900;
+}
 
 
 
@@ -182,4 +282,10 @@ section
         font-size: 40px;
         margin: 0px;
     }
+}
+
+
+/*viscom section*/
+#viscom {
+    display: none;
 }
