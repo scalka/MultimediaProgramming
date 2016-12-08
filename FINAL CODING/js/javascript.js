@@ -1,19 +1,17 @@
 $(document).ready(function() {
+    
 console.log("document ready");
 	//start of isotope code
 	//init isotope
 	var $bigbox = $('.bigbox').isotope({
 		//options
-		layoutMode: 'masonry',
 		itemSelector: '.bigboxes'
 	});
-	var $bgimage2 = $('.bgimage2').isotope({
-		itemSelector: '.bigimage2'
-	})
 	// filter functions, name is matching data-filter class and a class in the bigbox divs
 	var filterFns = {
 	  drawing: function() {
 	    var name = $(this).find('.name').text();
+        
 	    return name.match( /drawing$/ );
 	  },
 	  photography: function() {
@@ -59,18 +57,17 @@ console.log("document ready");
 	  media: function() {
 	    var name = $(this).find('.name').text();
 	    return name.match( /media$/ );
-	  },
+	  }
 	};
 	// on smallbox click the filter is applied to the divs and they are displayed accordingly
 	$('.filter-button-group').on( 'click', '.smallboxes', function() {
 	  var filterValue = $( this ).attr('data-filter');
-     // markedBtn = this.  
+      markedBtn = this.  
 	  // use filterFn if matches value
 	  filterValue = filterFns[ filterValue ] || filterValue;
 	  $bigbox.isotope({ filter: filterValue });
 	  console.log("smallbox clicked");
 	});
-
 	// change is-checked class on buttons
 	$('.button-group').each( function( i, buttonGroup ) {
 		console.log("button-group clicked");
@@ -84,7 +81,6 @@ console.log("document ready");
 	    $( this ).addClass('smallboxColor');
 	  });
 	});
-
 	// end of isotope code
 
 
@@ -93,20 +89,31 @@ console.log("document ready");
         placement: 'bottom',
         html: true
     });
-// showig info about vis com when clicked 
-$('.viscomBox').click(function (){
-	console.log("cl");
-    if($('#viscom').is(":not(:visible)") ){
-        $('#viscom').show(); 
-    }else{
-         $('#viscom').hide(); 
-    }
-});
 
-    
-}); // end of $(document).ready(function() 
+	$('.viscomBox').click(function (){
+		console.log("cl");
+		if($('#viscom').is(":not(:visible)") ){
+		    $('#viscom').show(); 
+		    $(this).toggleClass('box boxColor'); 
+		}else{
+		     $('#viscom').hide(); 
+		     $(this).toggleClass(' boxColor box'); 
+		}
+	});
+
+	$('.openDays').click(function (){
+		console.log("open days clicked");
+
+	});
+	$('.submission').click(function (){
+		console.log("submission clicked");
+	});
+	$('.results').click(function (){
+		console.log("results clicked");
+	});
+
+}); // end of $(document).ready(function() {
 
 function smallboxColor(){
 	var box = document.activeElement.tagName;
-
-}
+}	

@@ -134,7 +134,21 @@ a
     height: 35px;
     margin-top: 45px;
     margin-left: 15px;
-    background-color: transparent;
+}
+.smallboxes:active
+{
+    border: 2px solid;
+    background-color: #613366;
+    border-color: white;
+    width: 35px;
+    height: 35px;
+    margin-top: 45px;
+    margin-left: 15px;
+}
+
+.smallboxpadding
+{
+    margin-left: -10px;
 }
 .smallboxColor
 {
@@ -144,12 +158,6 @@ a
     margin-left: 15px;
     background: #460d50;
 }
-
-.smallboxpadding
-{
-    margin-left: -10px;
-}
-
 .bigboxes
 {
     font-family: "Work Sans";
@@ -168,6 +176,11 @@ a
 .box  
 {
     background-color: #F4550F;
+    height: 180px;
+    padding: 20px;
+}
+.boxColor {
+    background-color: #613366;
     height: 180px;
     padding: 20px;
 }
@@ -283,7 +296,6 @@ section
         margin: 0px;
     }
 }
-
 
 /*viscom section*/
 #viscom {
