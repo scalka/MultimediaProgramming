@@ -103,13 +103,45 @@ console.log("document ready");
 
 	$('.openDays').click(function (){
 		console.log("open days clicked");
+		if($('#openDaysContainer').is(":not(:visible)") ){
+		    $('#openDaysContainer').show(); 
+		    $('#submissionContainer').hide();  
+		    $('#resultsContainer').hide(); 
+		   	$('.openDays').addClass(' boxColor'); 
+		   	$('.submission').removeClass(' boxColor '); 
+		    $('.results').removeClass(' boxColor '); 
+		}else{
+		    $('#openDaysContainer').hide();
 
+		}
 	});
 	$('.submission').click(function (){
 		console.log("submission clicked");
+		if($('#submissionContainer').is(":not(:visible)") ){
+		    $('#submissionContainer').show(); 
+		    $('#openDaysContainer').hide();
+		    $('#resultsContainer').hide(); 
+		    $('.submission').addClass(' boxColor'); 
+		   	$('.openDays').removeClass(' boxColor '); 
+		    $('.results').removeClass(' boxColor '); 
+		}else{
+		    $('#submissionContainer').hide(); 
+		    $('#openDaysContainer').toggleClass(' boxColor box'); 
+		}
 	});
 	$('.results').click(function (){
 		console.log("results clicked");
+		if($('#resultsContainer').is(":not(:visible)") ){
+		    $('#resultsContainer').show(); 
+		    $('#submissionContainer').hide(); 
+		    $('#openDaysContainer').hide();
+		    $('.results').addClass(' boxColor'); 
+		   	$('.submission').removeClass(' boxColor '); 
+		    $('.openDays').removeClass(' boxColor '); 
+		}else{
+		    $('#resultsContainer').hide(); 
+		    $(this).toggleClass(' boxColor box'); 
+		}
 	});
 
 }); // end of $(document).ready(function() {

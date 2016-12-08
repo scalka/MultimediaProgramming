@@ -301,3 +301,14 @@ section
 #viscom {
     display: none;
 }
+
+#openDaysContainer{
+    display: block;
+}
+
+#submissionContainer{
+    display: none;
+}
+#resultsContainer{
+    display: none;
+}
