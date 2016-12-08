@@ -1,4 +1,4 @@
-$(document).ready(function() {
+"$(document).ready(function() {
     
 console.log("document ready");
 	//start of isotope code
@@ -148,4 +148,4 @@ console.log("document ready");
 
 function smallboxColor(){
 	var box = document.activeElement.tagName;
-}	
+}	"
