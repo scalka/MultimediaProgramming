@@ -19,14 +19,39 @@ body
     background-attachment: fixed;
 }
 
-.heading
+.bgimage2two
+{
+    background-image: url(IMG_0033%20kopia2%20kopia.jpg);
+    background-position: top;
+    background-size:cover;
+    background-attachment: fixed;
+    height: 1200px;
+}
+
+.headinghomepage
 {    
     padding-left: 40px;
     padding-top: 237px;
-    padding-bottom: 130px;
+    padding-bottom: 100px;
+}
+
+.heading
+{    
+    padding-left: 40px;
+    padding-top: 200px;
+    padding-bottom: 100px;
 }
 
 .heading1
+{
+    font-family: "Anton", sans-serif;
+    font-size: 40px;
+    color: white;
+    padding-top: 163px;
+    line-height: 25px;
+}
+
+.heading1homepage
 {
     font-family: "Anton", sans-serif;
     font-size: 40px;
@@ -45,6 +70,15 @@ body
     margin-left: 13px;
 }
 
+.headingmoredetails
+{
+    font-family: "Anton", sans-serif;
+    font-size: 25px;
+    color: white;
+    line-height: 45px;
+    margin-left: 0px;
+}
+
 .additionalpadding
 {
     padding-left: 45px;
@@ -54,7 +88,7 @@ body
 {
     background: none;
     height: 50px;
-    border-bottom-color: transparent;
+    border-color: transparent;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus 
@@ -62,6 +96,7 @@ body
     color: #FF0000;
     font-size: 25px;
 }
+
 
 .navbar-default .navbar-nav > li > a
 {
@@ -76,13 +111,12 @@ body
 
 .cart 
 {
-    overflow:hidden;
-    padding:10px 3px;
+    padding:30px 3px;
     background: none;
     text-align: left;
     font-family: "Anton", sans-serif;
     color: white;
-    font-size: 25px;
+    font-size: 40px;
     padding-left: 30px;
     height: 70px;
 }
@@ -92,6 +126,8 @@ a:hover
     color: #FF0000;
     text-decoration: none;
 }
+
+
 
 .logo
 {
@@ -126,6 +162,17 @@ a
     text-decoration: none;
 }
 
+.ui-tooltip {
+    font-size:5pt;
+    font-family:Calibri;
+}
+.red-tooltip + .tooltip > .tooltip-inner {
+    max-width: 50px;
+    background-color: #f00;
+    font-size:10pt;
+}
+
+
 .smallboxes
 {
     border: 2px solid;
@@ -138,7 +185,7 @@ a
 .smallboxes:active
 {
     border: 2px solid;
-    background-color: #613366;
+    background-color: #800D6D;
     border-color: white;
     width: 35px;
     height: 35px;
@@ -156,8 +203,14 @@ a
     height: 35px;
     margin-top: 45px;
     margin-left: 15px;
-    background: #460d50;
+    background: #800D6D;
 }
+
+.button-group
+{
+    margin-bottom: 50px;
+}
+
 .bigboxes
 {
     font-family: "Work Sans";
@@ -165,12 +218,12 @@ a
     font-weight: normal;
     font-size: 25px;
     list-style: none;
-    margin-top: 30px;
+    padding: 15px;
 }
 
-.bigboxespadding
+.bigbox
 {
-    padding-top: 100px;
+    padding-top: 40px;
 }
 
 .box  
@@ -179,15 +232,17 @@ a
     height: 180px;
     padding: 20px;
 }
-.boxColor {
-    background-color: #613366;
+
+.boxColor3 
+{
+    background-color: #800D6D;
     height: 180px;
     padding: 20px;
 }
 
 .box:active
 {
-    background-color: #613366;
+    background-color: #800D6D;
     height: 180px;
     padding: 20px;
 }
@@ -228,17 +283,24 @@ a
 .portfoliopic1
 {
     padding-top: 100px;
+    padding-left: 0px;
+    padding-right: 0px:
+}
+.rowbottom {
+    padding-top: 30px;
+    padding-bottom: 100px; 
 }
 
-.portfoliopic2
+
+.pic1, .pic2, .pic3, .pic4, .pic5, .pic6, .pic7, .pic8
 {
-    padding-top: 30px;
-    padding-bottom: 100px;
+    float: left;
+    /*margin:inherit;   */
 }
 
 .endofpage
 {
-    padding-top: 200px;
+    padding-top: 70px;
     padding-bottom: 50px;
 }
 
@@ -273,10 +335,10 @@ span.highlight2
     background-color: #F4550F;
 }
 
-section
+section /*here I check where my sections begin*/
 {
     height: 100px;
-   
+    background-color: none;
 }
 
 .Step2section
@@ -284,22 +346,109 @@ section
     background-color: #FF7900;
 }
 
-
-
-
-
-@media screen and (max-width: 320px) 
+.youneedtomove
 {
-    .heading
-    {
-        font-size: 40px;
-        margin: 0px;
-    }
+    margin-top: -180px;
+}
+
+.moredetails
+{
+    margin-top: 100px;
+}
+
+.threebuttons
+{
+    margin-bottom: 0px;
+}
+
+.arrow
+{
+    padding-bottom: 30px;
+}
+
+.one
+{
+    height: 1000px;
+}
+
+.two
+{
+    height: 940px;
+}
+
+.three
+{
+    height: 800px;
+}
+
+.arrowstyle
+{
+    padding-top: 45px;
+}
+
+.after
+{
+    padding-bottom: 50px;
+}
+
+.backgroundbox
+{
+    background-color: #800D6D;
+    height: 430px;
+    width: 530;
+    background-color:rgba(128,13,109, 0.5);
+}
+
+.backgroundbox1
+{
+    background-color: #800D6D;
+    height: 360px;
+    width: 530;
+    background-color:rgba(128,13,109, 0.5);
+}
+
+.backgroundbox2
+{
+    background-color: #800D6D;
+    height: 260px;
+    width: 530;
+    background-color:rgba(128,13,109, 0.5);
+    padding-left: 10px;
+}
+
+.backgroundbox3
+{
+    background-color: #800D6D;
+    height: 280px;
+    width: 530;
+    background-color:rgba(128,13,109, 0.5);
+    padding-left: 10px;
+}
+
+.backgroundbox4
+{
+    background-color: #800D6D;
+    height: 180px;
+    width: 530;
+    background-color:rgba(128,13,109, 0.5);
+    padding-left: 10px;
+}
+
+.nontransparent 
+{
+    margin: 0px;
+}
+.box:hover{
+    background-color:  #800D6D;
 }
 
 /*viscom section*/
 #viscom {
     display: none;
+}
+
+.viscomBox:hover{
+    color: white;
 }
 
 #openDaysContainer{
@@ -312,3 +461,111 @@ section
 #resultsContainer{
     display: none;
 }
+.img-responsive {
+    display: inline-block;
+
+}
+
+
+
+
+
+@media screen and (max-width: 680px) 
+{
+    .heading1
+    {
+        font-size: 20px;
+        margin-top: 25px;
+        line-height: 20px;
+    }
+    
+    
+    .interests
+    {
+        font-size: 15px;
+        line-height: 35px;
+        margin-left: 0px;
+        margin-top: 8px;
+        
+    }
+    
+    .smallboxes
+    {
+        border: 1px solid;
+        border-color: white;
+        width: 20px;
+        height: 20px;
+        margin-top: 15px;
+        margin-left: 0px;
+    }
+
+    .smallboxes:active
+    {
+        border: 2px solid;
+        background-color: #800D6D;
+        border-color: white;
+        width: 20px;
+        height: 20px;
+        margin-top: 15px;
+        margin-left: 0x;
+    }
+
+    .smallboxpadding
+    {
+        margin-left: 0px;
+    }
+    
+    .smallboxColor
+    {
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    margin-left: 0x;
+    background: #800D6D;
+    }
+    
+    .bigboxes
+    {
+        font-family: "Work Sans";
+        color: white;
+        font-weight: normal;
+        font-size: 15px;
+        list-style: none;
+        padding: 5px;
+    }
+    
+    .box  
+    {
+        background-color: #F4550F;
+        height: 100px;
+        width: 150px;
+        padding: 5px;
+    }
+    .boxColor3 
+    {
+        background-color: #800D6D;
+        height: 100px;
+        padding: 5px;
+        width: 150px;
+    }
+
+    .box:active
+    {
+        background-color: #800D6D;
+        height: 100px;
+        padding: 5px;
+    }
+    
+  
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+

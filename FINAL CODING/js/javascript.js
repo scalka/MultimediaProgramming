@@ -1,6 +1,8 @@
-"$(document).ready(function() {
-    
+$(document).ready(function() {
+  
 console.log("document ready");
+	
+	$("a").tooltip();
 	//start of isotope code
 	//init isotope
 	var $bigbox = $('.bigbox').isotope({
@@ -84,12 +86,6 @@ console.log("document ready");
 	// end of isotope code
 
 
-    $('a[data-toggle="tooltip"]').tooltip({
-        animated: 'fade',
-        placement: 'bottom',
-        html: true
-    });
-
 	$('.viscomBox').click(function (){
 		console.log("cl");
 		if($('#viscom').is(":not(:visible)") ){
@@ -107,9 +103,9 @@ console.log("document ready");
 		    $('#openDaysContainer').show(); 
 		    $('#submissionContainer').hide();  
 		    $('#resultsContainer').hide(); 
-		   	$('.openDays').addClass(' boxColor'); 
-		   	$('.submission').removeClass(' boxColor '); 
-		    $('.results').removeClass(' boxColor '); 
+		   	$('.openDays').addClass(' boxColor3'); 
+		   	$('.submission').removeClass(' boxColor3 '); 
+		    $('.results').removeClass(' boxColor3 '); 
 		}else{
 		    $('#openDaysContainer').hide();
 
@@ -121,12 +117,12 @@ console.log("document ready");
 		    $('#submissionContainer').show(); 
 		    $('#openDaysContainer').hide();
 		    $('#resultsContainer').hide(); 
-		    $('.submission').addClass(' boxColor'); 
-		   	$('.openDays').removeClass(' boxColor '); 
-		    $('.results').removeClass(' boxColor '); 
+		    $('.submission').addClass(' boxColor3'); 
+		   	$('.openDays').removeClass(' boxColor3 '); 
+		    $('.results').removeClass(' boxColor3 '); 
 		}else{
 		    $('#submissionContainer').hide(); 
-		    $('#openDaysContainer').toggleClass(' boxColor box'); 
+		    $('#openDaysContainer').toggleClass(' boxColor3 box'); 
 		}
 	});
 	$('.results').click(function (){
@@ -135,12 +131,12 @@ console.log("document ready");
 		    $('#resultsContainer').show(); 
 		    $('#submissionContainer').hide(); 
 		    $('#openDaysContainer').hide();
-		    $('.results').addClass(' boxColor'); 
-		   	$('.submission').removeClass(' boxColor '); 
-		    $('.openDays').removeClass(' boxColor '); 
+		    $('.results').addClass(' boxColor3'); 
+		   	$('.submission').removeClass(' boxColor3 '); 
+		    $('.openDays').removeClass(' boxColor3 '); 
 		}else{
 		    $('#resultsContainer').hide(); 
-		    $(this).toggleClass(' boxColor box'); 
+		    $('#resultsContainer').toggleClass(' boxColor3 box'); 
 		}
 	});
 
@@ -148,4 +144,4 @@ console.log("document ready");
 
 function smallboxColor(){
 	var box = document.activeElement.tagName;
-}	"
+}	

@@ -15,7 +15,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Anton|Work+Sans" rel="stylesheet">  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script> <!--This is the link to the most recent jquery library-->
-    
+    <!-- link to lightbox - photo gallery -->
+    <link href="lightbox/css/lightbox.css" rel="stylesheet">
+    <script src="lightbox/js/lightbox.js"></script>
     <script type="text/javascript" src="js/isotope.min.js"></script>
 
     <script type="text/javascript" src="js/javascript.js"></script>
@@ -33,7 +35,7 @@
     
 <body>
         <header>
-            <div class="navbar navbar-default navbar-fixed-top"> 
+            <div class="navbar navbar-default navbar-fixed-bottom"> 
                 <div class="navbar-header">
             
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navHeaderCollapse">  <!--This line targets the dropdown-->
@@ -58,54 +60,58 @@
         </header>
     
     
-    <div class="container-fluid">  
+     
  
         <div class="bgimage">  
     
             <div class="container">
-                <div class="col-lg-2 col-lg-offset-5 heading">
-                    <img src="pictures/3.png">
+              
+               <section id="Step0">
+                <div class="col-lg-2 col-lg-offset-5 col-sm-4 col-xs-4  headinghomepage">
+                    <img src="pictures/3.png" class="img-responsive">
                 </div>
-                <div class="col-lg-5 heading1">
+                <div class="col-lg-5 col-sm-7 col-xs-8 heading1homepage">
                 
                     <h2> <span class="highlight">STEPS</span> </h2>
                     <h2> <span class="highlight">TO BECOME </span></h2>
                     <h2> <span class="highlight">AN IADT STUDENT</span> </h2>
                 
                 </div>
+                </section>
+                
             </div>
         </div>  
         
-        <div class="navbar navbar-fixed-bottom">   
+        <div class="navbar navbar-fixed-top">   
             <div class="cart"> 
 
                 <div class="step"> 
                 
-                step  
-                
-                <a href="#Step1" data-toggle="tooltip" title="Choose your course">
+                <a href="#Step0" data-troggle="tooltip" data-placement="bottom" class="red-tooltip"  title="Home"> 
+                step  </a>
+                <a href="#Step1" class="color-tooltip" data-toggle="tooltip" data-placement="bottom" title="Choose your course">
                 1
                 </a>
-                <a href="#Step2" data-toggle="tooltip"  title="What we are looking for">
+                <a href="#Step2" class="color-tooltip" data-toggle="tooltip" data-placement="bottom" title="What we are looking for">
                 2
                 </a>
-                <a href="#Step3" data-toggle="tooltip"  title="Key dates">
+                <a href="#Step3" class="color-tooltip" data-toggle="tooltip" data-placement="bottom" title="Key dates">
                 3
                 </a>
                 
                 </div>
             </div> 
         </div>
-    </div>       
+          
  
-            <div class="container-fluid"> 
-                <div class="container">
+             
+                <div class="container one">
                     <section id="Step1">
     
                     <div class="row">
-                        <div class="col-lg-2 col-lg-offset-5 heading">
+                        <div class="col-lg-2 col-lg-offset-5 col-sm-3 col-xs-3 heading">
                             <div class="additionalpadding"> 
-                                <img src="pictures/1.png">
+                                <img src="pictures/1.png" class="img-responsive">
                             </div>
                         </div>
                         <div class="col-lg-5 heading1">
@@ -119,7 +125,7 @@
                   
                         <div class="row button-group">
 
-                                <div class="col-lg-1 col-xs-10  filter-button-group">
+                                <div class="col-lg-1 col-sm-1 col-xs-1  filter-button-group">
                                     <div class="smallboxes" data-filter=".drawing"> 
                                     </div>
                                     <div class="smallboxes" data-filter=".photography"> 
@@ -130,7 +136,7 @@
                                     </div>
                                 </div>  
 
-                                <div class="col-lg-3 col-xs-10">
+                                <div class="col-lg-3 col-sm-5 col-xs-5  ">
                                     <div class="interests">
                                         <li> Drawing </li>
                                         <li> Photography</li>
@@ -139,7 +145,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-1 col-xs-10 smallboxpadding  filter-button-group">
+                                <div class="col-lg-1 col-sm-1 col-xs-1 smallboxpadding  filter-button-group">
                                     <div class="smallboxes" data-filter=".music">
                                     </div>
                                     <div class="smallboxes" data-filter=".makeup">
@@ -150,16 +156,16 @@
                                     </div>
                                 </div>  
 
-                                <div class="col-lg-3 col-xs-10">
+                                <div class="col-lg-3 col-sm-5 col-xs-5">
                                     <div class="interests">
                                         <li> Music Making </li>
                                         <li> Make up</li>
-                                        <li>Costume Design</li>
+                                        <li>Fashion Design</li>
                                         <li>Film Production</li>
                                     </div>
                                 </div>
 
-                                 <div class="col-lg-1 col-xs-10 smallboxpadding  filter-button-group">
+                                 <div class="col-lg-1 col-sm-1 col-xs-1 smallboxpadding  filter-button-group">
                                     <div class="smallboxes" data-filter=".stagedesign">
                                     </div>
                                     <div class="smallboxes" data-filter=".writing">
@@ -170,7 +176,7 @@
                                     </div>
                                 </div>  
 
-                                <div class="col-lg-3 col-xs-10">
+                                <div class="col-lg-3 col-sm-5 col-xs-5">
                                     <div class="interests">
                                         <li> Stage Design </li>
                                         <li> Story Writing</li>
@@ -181,16 +187,16 @@
                         </div>   
                     </section>
                 </div>
-            </div>
+            
     
-<div class="bgimage2">
+<div class="bgimage2two">
     
     <div class="container bigbox">
    
         <div class="col-lg-12 col-xs-12 bigboxespadding ">
         <div class="row">
           
-            <div class="col-lg-4 bigboxes modelmaking art graphicdesign">
+            <div class="col-lg-4 col-sm-5 bigboxes modelmaking art graphicdesign">
                 <div class="box">
                     <li> 3D Design, <br> Model Making  <br> &amp;  Digital Art 
                     </li>
@@ -271,9 +277,11 @@
         </div> 
         <div class="row ">
                 <div class="col-lg-4 bigboxes ">
-                   <div class="box viscomBox">
-                        <li>  Visual <br> Communication <br> Design </li>
-                    </div>
+                   <a href="#Step2" class="nohover"> 
+                        <div class="box viscomBox">
+                             <li>  Visual <br> Communication <br> Design </li> 
+                        </div> 
+                    </a> 
                 </div>
         </div> 
         </div>
@@ -285,13 +293,13 @@
 </div>  
       
       
-<div class="container">
+<div class="container two">
     <section id="Step2">  
          
             
               
             <div class="row">
-                <div class="col-lg-2 col-lg-offset-5 heading">
+                <div class="col-lg-2 col-lg-offset-5 col-sm-3 col-xs-3 heading">
                     <img src="pictures/2.png"> 
                 </div>
 
@@ -322,90 +330,123 @@
             </div>
             
             
-</div>            
-        <div class="bgimage2">
-        
-<div class="container"><            
+                    <div class="arrow col-lg-2 col-lg-offset-7 arrowstyle">
+                        <a href="#viscom"> <img src="pictures/arrow.png" class="img-responsive"> </a>
+                    </div> 
+            
+            
+            
+        </div>  <!-- container two closing -->          
+            <div class="bgimage2">
+                
+            <div class="container">            
                 <div class="row"  id="viscom">
-                <!-- HERE STARTS AN INFORMATION REVELANT TO THE COURSE FILTR ABOVE-->
+                            <!-- HERE STARTS AN INFORMATION REVELANT TO THE COURSE FILTR ABOVE-->
+                            <div class="col-lg-12 col-xs-12 heading2">
+                                <h2> <span class="highlight2"> VISUAL <br> COMMUNICATION <br> DESIGN - PORTFOLIO </span> </h2>
+                            </div>
 
+                               <div class="col-lg-6 col-xs-12 subheading1"> 
+                                    
+                                       <h3> DO</h3>
+                                    <div class="backgroundbox">
+                                        
+                                         <div class="nontransparent">
+                                      <p> - Tidy up your work, give it a layout and order, for example,  it may be chronological or in thematic sections where initial work is placed next to final pieces,<br>
+                                        - Show your progress through period of time,<br>
+                                        - You can include your school projects and other colleges’ portfolio briefs,<br>- Include different media such as photography, sketchbooks, collages, digital work (make sure the format you hand will display on other devices), <br> 3d work (as a photography), storyboards, etc., <br>
+                                        - Include finalized work as well as still in progress,<br>
+                                        - You can include a CV with all your awards, <br> interests and hobbies.</p>
+                                         </div>
+                                         
+                                   </div>
+                               </div>
 
-                <div class="col-lg-12 col-xs-12 heading2">
-                    <h2> <span class="highlight2"> VISUAL <br> COMMUNICATION <br> DESIGN - PORTFOLIO </span> </h2>
-                </div>
+                                <div class="col-lg-6 col-xs-12 subheading2">
+                                    
+                                       <h3> DO NOT</h3>
+                                    <div class="backgroundbox">
+                                       
+                                        <div class="nontransparent">
+                                           <p> - Do not leave your work’s pieces loose <br> and in chaotic order,<br>
+                                            - Do not copy someone’s work, <br>
+                                            - Do not restrict your work to other college’s brief <br> (we want to see more), <br>
+                                            - Do not submit physical 3d work in your folder, <br>
+                                            - Do not exceed 10kg of total weight, <br>
+                                            - Do not put more than 30 pieces in total, <br>
+                                            - Do not draw from photographs, <br>
+                                            - If you decide to include the CV, do not write information which  is not related to the course.</p> 
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+  
+                        <div class="container-fluid">             
+                                    <div class="row portfoliopic1">
+                                        <!-- Add a data-lightbox attribute to any image link to activate Lightbox. For the value of the attribute, use a unique name for each image
+                            If you have a group of related images that you would like to combine into a set, use the same data-lightbox attribute value for all of the images - http://lokeshdhakar.com/projects/lightbox2/-->  
+                                        <div class="col-lg-3 pic1">
+                                            <a href="pictures/tryorange-23.jpg" data-lightbox="pic">
+                                                <img src="pictures/tryorange-22.jpg" class="img-responsive">
+                                            </a>
+                                        </div>
 
-                       <div class="col-lg-6 col-xs-12 subheading1">
-                           <h3> DO</h3>
+                                        <div class="col-lg-3 pic2">
+                                            <a href="images/1.jpg" data-lightbox="pic">
+                                                <img src="pictures/tryorange-23.jpg" class="img-responsive">
+                                            </a>
+                                        </div>
 
-                          <p> - Tidy up your work, give it a layout and order, for example,  it may be chronological or in thematic sections where initial work is placed next to final pieces,<br>
-                            - Show your progress through period of time,<br>
-                            - You can include your school projects and other colleges’ portfolio briefs,<br>- Include different media such as photography, sketchbooks, collages, digital work (make sure the format you hand will display on other devices), 3d work (as a photography), storyboards, etc., <br>
-                            - Include finalized work as well as still in progress,<br>
-                            - You can include a CV with all your awards, interests and hobbies.</p>
-                       </div>
+                                        <div class="col-lg-3 pic3">
+                                            <a href="images/2.jpg" data-lightbox="pic">
+                                                <img src="pictures/tryorange-24.jpg" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="col-lg-3 pic4">
+                                            <a href="#"> 
+                                                <img src="pictures/tryorange-25.jpg" class="img-responsive"> 
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row rowbottom">
+                                        <div class="col-lg-3 pic5">
+                                            <a href="#">
+                                                <img src="pictures/tryorange-26.jpg" class="img-responsive">
+                                            </a>
+                                        </div>
 
-                        <div class="col-lg-6 col-xs-12 subheading2">
-                           <h3> DO NOT</h3>
+                                        <div class="col-lg-3 pic6">
+                                            <a href="#">
+                                                <img src="pictures/tryorange-27.jpg" class="img-responsive">
+                                            </a>
+                                        </div>  
+                                        
+                                        <div class="col-lg-3 pic7">
+                                            <a href="#">
+                                               <img src="pictures/tryorange-28.jpg" class="img-responsive">  
+                                            </a>
+                                        </div>
+                                           
+                                        <div class="col-lg-3 pic8">
+                                            <a href="#">
+                                               <img src="pictures/tryorange-29.jpg" class="img-responsive">  
+                                            </a>
+                                        </div>
+                                    </div>  <!-- rowbottom closing -->
+                            </div> <!-- container fluid closing -->
+                        </div> <!-- row cl -->      
+                </div>  <!-- viscom closing -->
 
-                           <p> - Tidy up your work, give it a layout and order, for example,  it may be chronological or in thematic sections where initial work is placed next to final pieces,<br>
-                            - Show your progress through period of time,<br>
-                            - You can include your school projects and other colleges’ portfolio briefs,<br>- Include different media such as photography, sketchbooks, collages, digital work (make sure the format you hand will display on other devices), 3d work (as a photography), storyboards, etc., <br>
-                            - Include finalized work as well as still in progress,<br>
-                            - You can include a CV with all your awards, interests and hobbies.</p> 
-                        </div>
-                </div>  
+            </div> <!-- container closing --> 
+        </div> <!-- bgimage closing -->
 
-                <div class="row portfoliopic1">
-
-                    <div class="col-lg-4 pic1">
-                        <a href="#">
-                            <img src="pictures/1-20-20.jpg" class="img-responsive">
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 pic2">
-                        <a href="#">
-                            <img src="pictures/2-21.jpg" class="img-responsive">
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 pic3">
-                        <a href="#">
-                            <img src="pictures/3-22-22.jpg" class="img-responsive">
-                        </a>
-                    </div>
-
-                </div> 
-                <div class="row portfoliopic2">
-
-                    <div class="col-lg-4 pic4">
-                        <a href="#"> 
-                            <img src="pictures/4-23.jpg" class="img-responsive"> 
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 pic5">
-                        <a href="#">
-                            <img src="pictures/5-24.jpg" class="img-responsive">
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 pic6">
-                        <a href="#">
-                            <img src="pictures/6-25.jpg" class="img-responsive">
-                        </a>
-                    </div>    
-                </div>  
-    </div> 
-        </div>
-        
     </section>
       
     
 
+    <div class="container three">
 <section id="Step3">
-    <div class="container">
-
                 <div class="col-lg-2 col-lg-offset-5 heading">
 
                     <img src="pictures/3.png">
@@ -422,19 +463,19 @@
                 <div class="col-lg-12 col-xs-12">
                     <div class="row">
                             <div class="col-lg-4 bigboxes">
-                               <div class="box openDays boxColor">
+                               <div class="box  openDays boxColor3">
                                     <li> Open Days </li>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 bigboxes">
-                                <div class="box submission">
+                                <div class="box  submission">
                                     <li> Submission </li>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 bigboxes">
-                                <div class="box results">
+                                <div class="box  results">
                                     <li> Results </li>
                                 </div>
                             </div>
@@ -445,53 +486,126 @@
     <!-- THIS INFORMATION IS REVELANT TO THE FILTR ABOVE-->
     
         <div class="bgimage2">
-                <div class="container" id="openDaysContainer">
-                        <div class="row">
-                               <div class="col-lg-6 col-xs-12 heading2">
-                                   <h2> <span class="highlight2"> OPEN DAYS </span> </h2>
-                               </div>
-                                <div class="col-lg-5 col-xs-12 heading2">
-                                  <div class="subheading3">
-                                      <h2> <span class="highlight2"> WHY IS IT SO <br> IMPORTANT? </span> </h2>
-                                  </div>
-                                </div>
-                        </div>
+               
+                    <div class="container" id="openDaysContainer">
+                            <div class="row">
+                                   <div class="col-lg-6 col-xs-12 heading2">
+                                       <h2> <span class="highlight2"> OPEN DAYS </span> </h2>
+                                   </div>
+                                    <div class="col-lg-5 col-xs-12 heading2">
+                                      <div class="subheading3">
+                                          <h2> <span class="highlight2"> WHY IS IT SO <br> IMPORTANT? </span> </h2>
+                                      </div>
+                                    </div>
+                            </div>
 
-                        <div class="row">
-                            <div class="col-lg-6">
+                            <div class="row after">
+                                <div class="col-lg-6">
 
-                                <div class="subheading1"> 
-                                    <p> <span class="highlight2"> For Mature Students </span> <br> Thursday, 24th November 2016 (4.30-7.30pm)</p>
+                                   <div class="backgroundbox1">
+                                        <div class="subheading1">
+                                            
+                                            
+                                            <p> <span class="highlight2"> For Mature Students </span> <br> Thursday, 24th November 2016 (4.30-7.30pm)</p>
 
-                                <p> Friday, 25th November 2016  (2-8pm)</p>
+                                            <p> Friday, 25th November 2016  (2-8pm)</p>
 
-                                <p> Saturday, 26th November 2016  (10am-4pm)</p>
+                                            <p> Saturday, 26th November 2016  (10am-4pm)</p>
 
-                                    <p> <span class="highlight2"> CAO (undergraduate) courses </span> <br> Wednesday, 11th January 2017  (4-7pm)</p>
+                                            <p> <span class="highlight2"> CAO (undergraduate) courses </span> <br> Wednesday, 11th January 2017  (4-7pm)</p>
 
-                                    <p> <span class="highlight2"> For postgraduate <br> &amp; Professional development courses </span> <br> Wednesday, 5th April 2017 (5-7pm)</p>
-                                </div>
+                                            <p> <span class="highlight2"> For postgraduate <br> &amp; Professional development courses </span> <br> Wednesday, 5th April 2017 (5-7pm)</p>
+                                            
+                                            
+                                        </div>
+                                    </div>
 
-                            </div>       
+                                </div>       
 
-                            <div class="col-lg-6">
+                                <div class="col-lg-6">
+                                    
+                                    <div class="backgroundbox2">
+                                        
+                                        <p> - Receive feedback on your portfolio, <br>
+                                        - Most of the current students have  attended <br> on these days, <br>
+                                        - You will be able to see other students’  portfolio, <br>
+                                        - You will see our workspace  and facilities, <br>
+                                        - Opportunity to talk to students  and professors, <br>
+                                        - You can find out what kind of activities <br> we can offer you.</p>
+                                        
+                                    </div>
+                                    
+                                </div>       
+                            </div>
 
-                                <p> - Receive feedback on your portfolio, <br>
-                                    - Most of the current students have  attended <br> on these days, <br>
-                                    - You will be able to see other students’  portfolio, <br>
-                                    - You will see our workspace  and facilities, <br>
-                                    - Opportunity to talk to students  and professors, <br>
-                                    - You can find out what kind of activities <br> we can offer you.</p>
+                            <div class="row after">
+                                   <div class="col-lg-12 col-xs-12 heading2">
 
-                            </div>       
-                        </div>
-                </div> 
-                <div id="submissionContainer">
-                    <p>simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining ess</p>
-                </div>
-                <div id="resultsContainer">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                </div>
+                                        <div class="col-lg-offset-6 youneedtomove">
+                                           <a href="https://www.google.ie/maps/place/Dun+Laoghaire+Institute+Of+Art+Design+%26+Technology/@53.2803524,-6.155323,17z/data=!3m1!4b1!4m5!3m4!1s0x486708838c909fc1:0xa0c1fdf74beffaf3!8m2!3d53.2803524!4d-6.1531343"><h2> <span class="highlight2"> SEE DIRECTIONS </span> </h2> </a>
+                                        </div>
+
+                                   </div>    
+                            </div>
+
+
+                    </div> 
+                
+                    <div class="container" id="submissionContainer">
+
+                            <div class="row">
+                                        <div class="col-lg-6 col-xs-12 heading2">
+                                           <h2> <span class="highlight2"> SUBMIT </span> </h2>
+                                        </div>         
+                            </div>
+                            
+                            <div class="row after">
+                                   
+                                    <div class="col-lg-6">
+                                        <div class="backgroundbox3">
+                                           
+                                            <p> - The portfolio review takes place in March <br> (your work will be available to collect the same <br> day you submitted it), <br>
+                                            - Have in mind, that you can be called to an interview which is held in April. <br>
+                                            - Received points from portfolio and interview are combined with your leaving certificate <br> (or equivalent) points, <br>
+                                            - The cao late application deadline is not available.</p>
+                                            
+                                        </div>
+                                    </div> 
+                                    
+                            </div>   
+                            
+                            <div class="row">
+                                
+                                <div class="col-lg-4 col-xs-6 headingmoredetails">
+                                           <h2> <span class="highlight2"> FOR MORE DETAILS <br> SEE 
+                                           <a href="http://www.iadt.ie/study/how-to-apply"> HOW TO APPLY </a> </span> 
+                                           </h2>
+                                    </div>
+                                
+                            </div>
+                            
+                    </div>
+                
+                    <div class="container" id="resultsContainer">
+                            <div class="row">
+                                        <div class="col-lg-6 col-xs-12 heading2">
+                                           <h2> <span class="highlight2"> RESULTS </span> </h2>
+                                        </div>
+                            </div>
+                            <div class="row after">
+                                    <div class="col-lg-6">
+                                       
+                                        <div class="backgroundbox4">
+                                            
+                                            <p> - These will be send to you in may via email, <br> (please mind, points from portfolio are only <br> a part of total punctation), <br>
+                                            - If you succeed we will offer you a place, <br> sending    you the email in August.</p>
+                                            
+                                        </div>
+                                        
+                                    </div> 
+                            </div>   
+                    </div>
+            
         </div>   
     
     
@@ -500,7 +614,7 @@
             <div class="row endofpage">
 
                 <div class="col-lg-2 logopic">
-                    <img src="pictures/iadt%20logo.png" class="img-responsive">
+                    <a href="http://www.iadt.ie/"> <img src="pictures/iadt%20logo.png" class="img-responsive"> </a>  
                 </div>
 
                 <div class="col-lg-3 col-lg-offset-1 adress">
@@ -522,8 +636,10 @@
                 </div>
 
             </div>
-    </div>
+            
 </section> 
+    </div>
+
 
  
 </body>   
